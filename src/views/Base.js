@@ -19,6 +19,7 @@ export default class Base extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      slidebarcomponents:true,
       navigation: [],
       sliders: [],
       gallery: [],

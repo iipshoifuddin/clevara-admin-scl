@@ -8,7 +8,7 @@ const Page404  = () => {
             <Content>
                 <Code>404</Code>
                 <Msg>Not Found</Msg>
-                <Button to="/">Back to Home</Button>
+                <Button to="/home">Back to Home</Button>
             </Content>
         </Container>
     )
