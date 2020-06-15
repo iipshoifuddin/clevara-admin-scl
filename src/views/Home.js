@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import AdministratorTable from '../components/base_components/Table/AdministratorTable';
+import DropDownListProfile from '../components/base_components/DropDownList/DropDownListProfile/DropDownListProfile';
 
 const storeData = [
     {
@@ -31,7 +32,9 @@ class Home extends Component {
         return (
             <div>
                 <section>
-                    
+                    <div style={{marginTop: "114px"}}></div>
+                    <DropDownListProfile />
+                    <div style={{marginBottom: "73px"}}></div>
                 </section>
                 <section>
                     <AdministratorTable
