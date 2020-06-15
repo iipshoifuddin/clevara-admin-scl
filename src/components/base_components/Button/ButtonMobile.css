@@ -8,5 +8,13 @@
     color: #1A6EB2;
     /* outline: 2px solid #1A6EB2; */
     border-radius: 5px;
-    border: 2px solid #1A6EB2;
+    /* border: 2px solid #1A6EB2; */
+}
+
+#buttonAsset > .row > .col > button:active{
+    outline: none;
+}
+
+#buttonAsset > .row > .col > button:focus{
+    outline: none;
 }

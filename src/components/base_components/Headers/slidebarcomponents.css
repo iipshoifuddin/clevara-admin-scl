@@ -19,7 +19,6 @@
     transition: 0.3s;
     width: 100%;
     height: 60px;
-    font-family: Poppins;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -27,7 +26,6 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
     /* identical to box height */
 
     color: #FFFFFF;
@@ -84,7 +82,7 @@
     background-color: #444;
 }
 
-#slidebarComponentsDashboardContainer > .row > .col > #main {
+#slidebarComponentsDashboardContainer > .row > .col > #contentDashboardEduplus {
     transition: margin-left .5s;
     margin-left: 250px;
     padding: 16px;

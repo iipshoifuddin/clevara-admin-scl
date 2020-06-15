@@ -60,7 +60,7 @@ export default class ApplicationLayout extends Base {
                 </header>
 
                 {window.location.pathname==="/" ? <div id="content">{this.props.children}</div>:
-                <div id="contentDashboardEduplus">{this.props.children}</div>}
+                <div id="contentDashboardEduplus" style={{marginLeft:"250px"}}>{this.props.children}</div>}
                 <footer>
                 </footer>
             </div>
