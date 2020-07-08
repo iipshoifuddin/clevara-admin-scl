@@ -31,10 +31,10 @@
     } */
 }
 
-#dropDownListProfileContainer{
+#paginationContainer{
     max-width: 100%;
-    padding-right: 35px;
-    padding-left: 35px;
+    /* padding-right: 35px;
+    padding-left: 35px; */
     margin-left: auto;
     margin-right: auto; 
 }
@@ -147,16 +147,12 @@
   /* width: 170px; */
   height: 37px;
 
-  /* ROBOTO - BODY 2 */
-
   /* identical to box height */
   display: flex;
   align-items: center;
   letter-spacing: 0.0025em;
 
   color: #151522;
-
-
 }
 
 #myDropdownArea > li:hover {
@@ -171,25 +167,45 @@
   line-height: 17px;
 }
 
-#dropDownListProfileContainer > .row > .DropDownListProfileMenu{
+#paginationContainer > .row > .DropDownListProfileMenu{
   justify-content: flex-end;
   display: flex;
 }
 
-#dropDownListProfileContainer > .row > .DropDownListProfileMenu > .searchButtonDropDownList > input[type="text"]:focus {
+#paginationContainer > .row > .DropDownListProfileMenu > .searchButtonDropDownList > input[type="text"]:focus {
   width: 250px;
   z-index: 1;
   border-bottom: 1.2px solid #151522;
   cursor: text;
 }
 
-#dropDownListProfileContainer > .row > .DropDownListProfileMenu > .searchButtonDropDownList > i{
+#paginationContainer > .row > .DropDownListProfileMenu > .searchButtonDropDownList > i{
   z-index: 2;
   cursor: pointer;
   cursor: pointer;
   transition: opacity .4s ease;
 }
 
-#dropDownListProfileContainer > .row > .DropDownListProfileMenu > .searchButtonDropDownList > i:hover{
+#paginationContainer > .row > .DropDownListProfileMenu > .searchButtonDropDownList > i:hover{
   opacity: 0.4;
+}
+
+#paginationContainer > .row > .col > .classDivPagination :hover{
+    background: #1A6EB2;
+    border: 0px;
+}
+
+#paginationContainer > .row > .col > .classDivPagination > .paginationButtonNumber:hover{
+  color: #FFFFFF !important;
+}
+
+#paginationContainer > .row > .col > .classDivPagination > .paginationButtonArrow > i:hover{
+    color: #FFFFFF !important;
+}
+
+.activeClassPagination{
+  background: #1A6EB2 !important;
+  color: #FFFFFF !important;
+  border: 0px !important;
+
 }

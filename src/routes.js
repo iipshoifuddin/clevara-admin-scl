@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Home from './views/Home';
+import Officer from './views/Officer';
 import Login from './views/Auth/Login';
 import Page404 from './views/errors/Page404';
 
@@ -11,6 +12,7 @@ const BaseRoute = () => {
             <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path="/home" component={Home} />
+                <Route exact path="/officer" component={Officer} />
                 <Route path="" component={Page404} />
             </Switch>
         </>

@@ -1,33 +1,34 @@
 import React, { Component } from 'react';
 
-import AdministratorTable from '../components/base_components/Table/AdministratorTable';
+import OfficerTable from '../components/base_components/Table/OfficerTable/OfficerTable';
 import DropDownListProfile from '../components/base_components/DropDownList/DropDownListProfile/DropDownListProfile';
+
 
 const storeData = [
     {
-        id          : "Staff001",
-        email       : "daffa@mail.com",
-        name        : "Daffa",
-        role        : "Super Admin",
-        password    : ""
+        officer      : "Daffa",
+        position     : "tata usaha",
+        school       : "SMPN 12 Bogor",
+        email        : "daffa@gmail.com",
+        phone        : "0819899000"
     },
     {
-        id          : "Staff002",
-        email       : "nopal@mail.com",
-        name        : "Nopal",
-        role        : "Admin",
-        password    : ""
+        officer      : "Nopal",
+        position     : "tata usaha",
+        school       : "SMK 1 Jakarta",
+        email        : "nopal@gmail.com",
+        phone        : "08971123889"
     },
     {
-        id          : "Staff003",
-        email       : "nando@mail.com",
-        name        : "Nando",
-        role        : "Admin",
-        password    : ""
+        officer      : "Asep K",
+        position     : "daffa@mail.com",
+        school       : "SD Sumbangsih",
+        email        : "asep@gmail.com",
+        phone        : "0852345876"
     },
 ];
 
-class Home extends Component {
+class Officer extends Component {
     render() {
         return (
             <div>
@@ -39,7 +40,7 @@ class Home extends Component {
                     <div style={{marginBottom: "73px"}}></div>
                 </section>
                 <section>
-                    <AdministratorTable
+                    <OfficerTable
                         store={storeData}
                     />
                 </section>
@@ -48,4 +49,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Officer;
