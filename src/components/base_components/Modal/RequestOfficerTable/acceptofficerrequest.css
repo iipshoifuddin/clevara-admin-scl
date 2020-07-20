@@ -1,0 +1,36 @@
+#modalAcceptOfficerRequestId{
+    width: 337px;
+}
+
+#modalAcceptOfficerRequestId > .modal-content > .modal-header{
+    border-bottom: 0px;
+}
+
+#modalAcceptOfficerRequestId > .modal-content > .modal-body > .acceptOfficerRequestContainer > .row > .cancelButton{
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+}
+
+#modalAcceptOfficerRequestId > .modal-content > .modal-body > .acceptOfficerRequestContainer > .row > .cancelButton a{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A6EB2;
+    /* margin-right: 23px; */
+    text-decoration: none;
+}
+
+#modalAcceptOfficerRequestId > .modal-content > .modal-body > .acceptOfficerRequestContainer > .row > .deleteButton #buttonAsset{
+    justify-content: left;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#buttonAcceptOfficerRequest:hover{
+    color: #1A6EB2 !important;
+}

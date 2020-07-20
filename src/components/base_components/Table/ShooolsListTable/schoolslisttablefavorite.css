@@ -1,37 +1,37 @@
 @media screen and (min-width: 1024px){
-    #administratorTableContainer > .row > .col .divAdministratorTable{
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
         min-width: 680px;
     }
 }
 @media screen and (min-width: 1152px){
-    #administratorTableContainer > .row > .col .divAdministratorTable{
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
         min-width: 770px;
     }
 }
 @media screen and (min-width: 1280px){
-    #administratorTableContainer > .row > .col .divAdministratorTable{
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
         min-width: 870px;
     } 
 }
 @media screen and (min-width: 1360px){
-    #administratorTableContainer > .row > .col .divAdministratorTable{
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
         min-width: 950px;
     }   
 }
 
 @media screen and (min-width: 1366px){
-    #administratorTableContainer > .row > .col .divAdministratorTable{
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
         min-width: 950px;
     }
 }
 
 @media screen and (min-width: 1440px){
-    #administratorTableContainer > .row > .col .divAdministratorTable{
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
         min-width: 1029px;
     }
 }
 
-#administratorTableContainer{
+#schoolsListTableFavoriteContainer{
     max-width: 100%;
     padding-right: 35px;
     padding-left: 35px;
@@ -39,13 +39,13 @@
     margin-right: auto; 
 }
 
-#administratorTableContainer > .row > .col th, td {
+#schoolsListTableFavoriteContainer > .row > .col th, td {
     background: #F5F5FB;
     border-bottom: 2px solid white; 
     
 }
 
-#administratorTableContainer > .row > .col .table td, .table th {
+#schoolsListTableFavoriteContainer > .row > .col .table td, .table th {
 
     padding: .75rem;
     vertical-align: top;
@@ -53,7 +53,7 @@
 
 }
 
-#administratorTableContainer > .row > .col .table th{
+#schoolsListTableFavoriteContainer > .row > .col .table th{
     background: none;
     
     font-family: Poppins;
@@ -68,17 +68,17 @@
     color: rgba(0, 0, 0, 0.8);
 }
 
-#administratorTableContainer > .row > .col .borderRadiusField{
+#schoolsListTableFavoriteContainer > .row > .col .borderRadiusField{
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 
-#administratorTableContainer > .row > .col .borderRadiusFieldLeft{
+#schoolsListTableFavoriteContainer > .row > .col .borderRadiusFieldLeft{
     border-top-Left-radius: 15px;
     border-bottom-Left-radius: 15px;
 }
 
-#administratorTableContainer > .row > .col .editLinkStyle{
+#schoolsListTableFavoriteContainer > .row > .col .editLinkStyle{
     margin-right: 8px;
     font-family: "Poppins";
     font-style: normal;
@@ -89,7 +89,7 @@
     color: #1A6EB2;
 }
 
-#administratorTableContainer > .row > .col .deleteLinkStyle{
+#schoolsListTableFavoriteContainer > .row > .col .deleteLinkStyle{
     margin-left: 8px;
     font-family: "Poppins";
     font-style: normal;
@@ -100,8 +100,8 @@
     color: #1A6EB2;
 }
 
-#administratorTableContainer > .row > .col #buttonAsset{
-    justify-content: right;
+#schoolsListTableFavoriteContainer > .row > .col #buttonAsset{
+    justify-content: center;
     margin: 0px;
     padding: 0px;
     padding-top: 35px;
@@ -109,6 +109,6 @@
     display: inline-grid;
 }
 
-#administratorTableContainer > .row > .col > .divAdministratorTable > .table > tbody > tr > td > .editLinkStyle:hover{
+#schoolsListTableFavoriteContainer > .row > .col > .divSchoolsListTableFavorite > .table > tbody > tr > td > .editLinkStyle:hover{
     text-decoration: none;
 }

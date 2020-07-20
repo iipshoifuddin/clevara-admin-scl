@@ -1,0 +1,37 @@
+
+#modalDeleteInboxTableRecordId{
+    width: 337px;
+}
+
+#modalDeleteInboxTableRecordId > .modal-content > .modal-header{
+    border-bottom: 0px;
+}
+
+#modalDeleteInboxTableRecordId > .modal-content > .modal-body > .deleteInboxTableRecordClass > .row > .cancelButton{
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+}
+
+#modalDeleteInboxTableRecordId > .modal-content > .modal-body > .deleteInboxTableRecordClass > .row > .cancelButton a{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A6EB2;
+    /* margin-right: 23px; */
+    text-decoration: none;
+}
+
+#modalDeleteInboxTableRecordId > .modal-content > .modal-body > .deleteInboxTableRecordClass > .row > .deleteButton #buttonAsset{
+    justify-content: left;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#buttonModalDeleteInboxTableRecord:hover{
+    color: #a31818 !important;
+}

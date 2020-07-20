@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import $ from 'jquery'
 
-// import ButtonPrimary from '../../Button/ButtonPrimary'; 
+import ButtonPrimary from '../../Button/ButtonPrimary';
 import Pagination from '../../Pagination/Pagination';
-import DeleteOfficerRecord from '../../Modal/OfficerTable/DeleteOfficerRecord';
-import './officertable.css';
+import AddScoolsTableFavorite from '../../Modal/SchoolsTable/AddScoolsTableFavorite';
+import DetailSchoolsTableFavoriteRecord from '../../Modal/SchoolsTable/DetailSchoolsTableFavoriteRecord';
+import DeleteSchoolsTableFavoriteRecord from '../../Modal/SchoolsTable/DeleteSchoolsTableFavoriteRecord';
+import './schoolslisttablefavorite.css';
 
 
 const dataFromBackEnd =[
@@ -25,14 +27,36 @@ const dataFromBackEnd =[
     {data: 11},
     {data: 12},
     {data: 13},
-]
+];
 
-const OfficerTable = props => {
+const dataDetail=[
+    {
+        schoolsName: "SDN 1",
+        schollsAddress: "Jl. ",
+        province: "Jawa Barat",
+        regency: "Depok",
+        district: "cinere",
+        village: "cinere",
+        eduStage: "SMA",
+        status: "negeri",
+        acreditation: "A",
+        npsn: "43243",
+        operator: "jajang",
+        email: "sdncinere@gmail.com",
+        telepon: "098881123132",
+    }
+];
+
+
+const SchoolsListTableFavorite = props => {
     const [prevButtonPagination,setPrevButtonPagination]=useState(0);
     const [nextButtonPagination,setNextButtonPagination]=useState(3);
+    const [detailModal, setDetailModalShow] = useState(false);    
+    const [idDeniedModal, setIdDeniedModalShow] = useState('');    
     const [deleteModal, setDeleteModalShow] = useState(false);    
-    const [idDeleteModal, setIdDeleteModalShow] = useState('');    
-    let newPaginationData=[], indexPage=1;
+    const [idDeleteModal, setIdDeleteModalShow] = useState('');  
+    const [addModal, setAddModalShow] = useState(false);    
+   let newPaginationData=[], indexPage=1;
     for(let i =0; i<dataFromBackEnd.length; i++){
         newPaginationData[i]={
             number: indexPage
@@ -53,16 +77,16 @@ const OfficerTable = props => {
     }
     return (
         <>
-            <Container id="administratorTableContainer">
+            <Container id="schoolsListTableFavoriteContainer">
                 <Row>
                     <Col>
-                        <TableDIv className="divAdministratorTable">
+                        <TableDIv className="divSchoolsListTableFavorite">
                             <Table>
                                 <tbody>
                                     <tr>
+                                        <th>Nama Sekolah</th>
+                                        <th>NPSN</th>
                                         <th>Operator</th>
-                                        <th>Jabatan</th>
-                                        <th>Sekolah</th>
                                         <th>Email Sekolah</th>
                                         <th>Telepon</th>
                                         <th>Action</th>
@@ -70,12 +94,16 @@ const OfficerTable = props => {
                                     {props.store.map((data)=>{
                                         return(
                                             <tr>
-                                                <td className="borderRadiusFieldLeft">{data.officer}</td>
-                                                <td>{data.position}</td>
-                                                <td>{data.school}</td>
+                                                <td className="borderRadiusFieldLeft">{data.school}</td>
+                                                <td>{data.npsn}</td>
+                                                <td>{data.officer}</td>
                                                 <td>{data.email}</td>
                                                 <td>{data.phone}</td>
                                                 <td className="borderRadiusField">
+                                                    <Link 
+                                                        className="editLinkStyle"
+                                                        onClick={()=>{setDetailModalShow(true)}}
+                                                    >Detail</Link>
                                                     <Link 
                                                         className="editLinkStyle"
                                                         onClick={()=>{setDeleteModalShow(true); setIdDeleteModalShow(data.id)}}
@@ -106,10 +134,34 @@ const OfficerTable = props => {
                 </Row>
                 <Row>
                     <Col>
-                        <DeleteOfficerRecord
+                        <ButtonPrimary
+                            width="216px"
+                            name="Tambah Sekolah Favorite +"
+                            onClick={()=>{setAddModalShow(true)}}
+                        />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <DetailSchoolsTableFavoriteRecord
+                            show={detailModal}
+                            onHide={() => setDetailModalShow(false)}
+                            store={dataDetail}               
+                            // idData={idDeniedModal}                    
+                        />
+                    </Col>
+                    <Col>
+                        <AddScoolsTableFavorite
+                            show={addModal}
+                            onHide={() => setAddModalShow(false)}
+                        />
+                    </Col>
+                    <Col>
+                        <DeleteSchoolsTableFavoriteRecord
                             show={deleteModal}
                             onHide={() => setDeleteModalShow(false)}
-                            idData={idDeleteModal}                    />
+                            idData={deleteModal}                    
+                        />
                     </Col>
                 </Row>
             </Container>
@@ -213,8 +265,8 @@ const TitleModalDelete = styled.div`
     margin-bottom:36px;
 `;
 
-OfficerTable.propTypes = {
+SchoolsListTableFavorite.propTypes = {
     name : PropTypes.string
 }
 
-export default OfficerTable;
+export default SchoolsListTableFavorite;

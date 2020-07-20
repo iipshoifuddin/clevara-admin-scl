@@ -46,7 +46,7 @@ const DropDownListProfile = props => {
         <>
             <Container id="dropDownListProfileContainer">
                 <Row>
-                    <Col><TitleAdministrator>Administrator</TitleAdministrator>                        
+                    <Col><TitleAdministrator>{props.titlePage}</TitleAdministrator>                        
                     </Col>
                 </Row>
                 <Row>

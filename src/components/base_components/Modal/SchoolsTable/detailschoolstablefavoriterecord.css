@@ -1,0 +1,30 @@
+#modalSchoolsTableFavoriteRecordId{
+    width: 594px;
+}
+
+#modalSchoolsTableFavoriteRecordId > .modal-content > .modal-header > #contained-modal-title-vcenter{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 26px;
+    color: #373A3C;
+}
+
+#modalSchoolsTableFavoriteRecordId > .modal-content > .modal-footer > #buttonAsset{
+    max-width: 90px;
+}
+
+#modalSchoolsTableFavoriteRecordId > .modal-content > .modal-footer > .buttonBackModalAddAdministeatorRecord{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A6EB2;
+    margin-right: 23px;
+    text-decoration: none;
+}
+
+#modalSchoolsTableFavoriteRecordId > .modal-content > .modal-footer > .buttonBackModalAddAdministeatorRecord:hover{
+    text-decoration: none;
+}

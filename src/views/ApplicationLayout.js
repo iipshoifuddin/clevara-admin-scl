@@ -29,7 +29,7 @@ const data = [
         link        : "/requset"
     },
     {
-        name        :"Sekolah",
+        name        :"Daftar Sekolah",
         icon        :"graduation-cap",
         fontIcon    :"Entypo",
         singleBarId : "fourthSinglebarId",
@@ -42,7 +42,13 @@ const data = [
         singleBarId : "fifthSinglebarId",
         link        : "/banner"
     },
-    
+    {
+        name        :"Inbox",
+        icon        :"mail",
+        fontIcon    :"Feather",
+        singleBarId : "sixthSinglebarId",
+        link        : "/inbox"
+    },
 ]
 
 export default class ApplicationLayout extends Base {

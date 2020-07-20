@@ -1,35 +1,29 @@
 import React, { Component } from 'react';
 
-import OfficerTable from '../components/base_components/Table/OfficerTable/OfficerTable';
+import InboxTable from '../components/base_components/Table/InboxTable/InboxTable';
 import DropDownListProfile from '../components/base_components/DropDownList/DropDownListProfile/DropDownListProfile';
 import DropDownListFilter from '../components/base_components/DropDownList/DropDownListFilter/DropDownListFilter';
 
 
 const storeData = [
     {
-        officer      : "Daffa",
-        position     : "tata usaha",
-        school       : "SMPN 12 Bogor",
+        name         : "Daffa",
         email        : "daffa@gmail.com",
-        phone        : "0819899000"
+        message      : "0819899000"
     },
     {
-        officer      : "Nopal",
-        position     : "tata usaha",
-        school       : "SMK 1 Jakarta",
+        name         : "Nopal",
         email        : "nopal@gmail.com",
-        phone        : "08971123889"
+        message      : "08971123889"
     },
     {
-        officer      : "Asep K",
-        position     : "daffa@mail.com",
-        school       : "SD Sumbangsih",
+        name         : "Asep K",
         email        : "asep@gmail.com",
-        phone        : "0852345876"
+        message      : "0852345876"
     },
 ];
 
-class Officer extends Component {
+class Inbox extends Component {
     render() {
         return (
             <div>
@@ -48,7 +42,7 @@ class Officer extends Component {
                 </section>
                 <section>
                     <div style={{marginTop: "25px"}}></div>
-                    <OfficerTable
+                    <InboxTable
                         store={storeData}
                     />
                     <div style={{marginBottom: "351px"}}></div>
@@ -58,4 +52,4 @@ class Officer extends Component {
     }
 }
 
-export default Officer;
+export default Inbox;

@@ -34,6 +34,7 @@ class Home extends Component {
                 <section>
                     <div style={{marginTop: "114px"}}></div>
                     <DropDownListProfile 
+                        titlePage="Administrator"
                         onChangeSearch={(e)=>{console.log(e.target.value)}}
                     />
                     <div style={{marginBottom: "73px"}}></div>

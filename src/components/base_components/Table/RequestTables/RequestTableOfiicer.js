@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import $ from 'jquery'
 
-// import ButtonPrimary from '../../Button/ButtonPrimary'; 
 import Pagination from '../../Pagination/Pagination';
-import DeleteOfficerRecord from '../../Modal/OfficerTable/DeleteOfficerRecord';
-import './officertable.css';
+import DeniedOfficerRequest from '../../Modal/RequestOfficerTable/DeniedOfficerRequest';
+import AcceptOfficerRequest from '../../Modal/RequestOfficerTable/AcceptOfficerRequest'
+import './requesttableofficer.css';
 
 
 const dataFromBackEnd =[
@@ -27,11 +27,13 @@ const dataFromBackEnd =[
     {data: 13},
 ]
 
-const OfficerTable = props => {
+const RequestTableOfiicer = props => {
     const [prevButtonPagination,setPrevButtonPagination]=useState(0);
     const [nextButtonPagination,setNextButtonPagination]=useState(3);
-    const [deleteModal, setDeleteModalShow] = useState(false);    
-    const [idDeleteModal, setIdDeleteModalShow] = useState('');    
+    const [deniedModal, setDeniedModalShow] = useState(false);    
+    const [idDeniedModal, setIdDeniedModalShow] = useState('');    
+    const [acceptModal, setAcceptModalShow] = useState(false);    
+    const [idAcceptModal, setIdAcceptModalShow] = useState('');    
     let newPaginationData=[], indexPage=1;
     for(let i =0; i<dataFromBackEnd.length; i++){
         newPaginationData[i]={
@@ -53,16 +55,17 @@ const OfficerTable = props => {
     }
     return (
         <>
-            <Container id="administratorTableContainer">
+            <Container id="RequestTableOfficerContainer">
                 <Row>
                     <Col>
-                        <TableDIv className="divAdministratorTable">
+                        <TableDIv className="divOfficerRequestTable">
                             <Table>
                                 <tbody>
                                     <tr>
+                                        <th>Sekolah</th>
+                                        <th>NPSN</th>
                                         <th>Operator</th>
                                         <th>Jabatan</th>
-                                        <th>Sekolah</th>
                                         <th>Email Sekolah</th>
                                         <th>Telepon</th>
                                         <th>Action</th>
@@ -70,16 +73,22 @@ const OfficerTable = props => {
                                     {props.store.map((data)=>{
                                         return(
                                             <tr>
-                                                <td className="borderRadiusFieldLeft">{data.officer}</td>
+                                                <td className="borderRadiusFieldLeft">{data.school}</td>
+                                                <td>{data.npsn}</td>
+                                                <td>{data.officer}</td>
                                                 <td>{data.position}</td>
-                                                <td>{data.school}</td>
                                                 <td>{data.email}</td>
                                                 <td>{data.phone}</td>
                                                 <td className="borderRadiusField">
+                                                    
                                                     <Link 
                                                         className="editLinkStyle"
-                                                        onClick={()=>{setDeleteModalShow(true); setIdDeleteModalShow(data.id)}}
-                                                    >Delete</Link>
+                                                        onClick={()=>{setAcceptModalShow(true); setIdAcceptModalShow(data.id)}}
+                                                    >Accept</Link>
+                                                    <Link 
+                                                        className="editLinkStyle"
+                                                        onClick={()=>{setDeniedModalShow(true); setIdDeniedModalShow(data.id)}}
+                                                    >Denied</Link>
                                                 </td>
                                             </tr>
                                         );
@@ -106,10 +115,16 @@ const OfficerTable = props => {
                 </Row>
                 <Row>
                     <Col>
-                        <DeleteOfficerRecord
-                            show={deleteModal}
-                            onHide={() => setDeleteModalShow(false)}
-                            idData={idDeleteModal}                    />
+                        <DeniedOfficerRequest
+                            show={deniedModal}
+                            onHide={() => setDeniedModalShow(false)}
+                            idData={idDeniedModal}                    />
+                    </Col>
+                    <Col>
+                        <AcceptOfficerRequest
+                            show={acceptModal}
+                            onHide={() => setAcceptModalShow(false)}
+                            idData={idAcceptModal}                    />
                     </Col>
                 </Row>
             </Container>
@@ -213,8 +228,8 @@ const TitleModalDelete = styled.div`
     margin-bottom:36px;
 `;
 
-OfficerTable.propTypes = {
+RequestTableOfiicer.propTypes = {
     name : PropTypes.string
 }
 
-export default OfficerTable;
+export default RequestTableOfiicer;

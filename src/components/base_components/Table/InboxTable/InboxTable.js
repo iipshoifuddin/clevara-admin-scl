@@ -7,8 +7,9 @@ import $ from 'jquery'
 
 // import ButtonPrimary from '../../Button/ButtonPrimary'; 
 import Pagination from '../../Pagination/Pagination';
-import DeleteOfficerRecord from '../../Modal/OfficerTable/DeleteOfficerRecord';
-import './officertable.css';
+import DetailInboxTable from '../../Modal/InboxTable/DetailInboxTable';
+import DeleteInboxTableRecord from '../../Modal/InboxTable/DeleteInboxTableRecord';
+import './inboxtable.css';
 
 
 const dataFromBackEnd =[
@@ -27,9 +28,11 @@ const dataFromBackEnd =[
     {data: 13},
 ]
 
-const OfficerTable = props => {
+const InboxTable = props => {
     const [prevButtonPagination,setPrevButtonPagination]=useState(0);
     const [nextButtonPagination,setNextButtonPagination]=useState(3);
+    const [detailModal, setDetailModalShow] = useState(false);    
+    const [dataDetailModal, setDataDetailModalShow] = useState('');    
     const [deleteModal, setDeleteModalShow] = useState(false);    
     const [idDeleteModal, setIdDeleteModalShow] = useState('');    
     let newPaginationData=[], indexPage=1;
@@ -53,29 +56,29 @@ const OfficerTable = props => {
     }
     return (
         <>
-            <Container id="administratorTableContainer">
+            <Container id="inboxTableContainer">
                 <Row>
                     <Col>
-                        <TableDIv className="divAdministratorTable">
+                        <TableDIv className="divInboxTable">
                             <Table>
                                 <tbody>
                                     <tr>
-                                        <th>Operator</th>
-                                        <th>Jabatan</th>
-                                        <th>Sekolah</th>
-                                        <th>Email Sekolah</th>
-                                        <th>Telepon</th>
-                                        <th>Action</th>
+                                        <th style={{width: "200px"}}>Nama</th>
+                                        <th style={{width: "200px"}}>Email Sekolah</th>
+                                        <th>Pesan</th>
+                                        <th style={{width: "200px"}}>Action</th>
                                     </tr>
                                     {props.store.map((data)=>{
                                         return(
                                             <tr>
-                                                <td className="borderRadiusFieldLeft">{data.officer}</td>
-                                                <td>{data.position}</td>
-                                                <td>{data.school}</td>
-                                                <td>{data.email}</td>
-                                                <td>{data.phone}</td>
-                                                <td className="borderRadiusField">
+                                                <td className="borderRadiusFieldLeft" style={{width: "200px"}}>{data.name}</td>
+                                                <td style={{width: "200px"}}>{data.email}</td>
+                                                <td>{data.message}</td>
+                                                <td className="borderRadiusField" style={{width: "200px"}}>
+                                                    <Link 
+                                                        className="editLinkStyle"
+                                                        onClick={()=>{setDetailModalShow(true); setDataDetailModalShow(data)}}
+                                                    >Detail </Link>
                                                     <Link 
                                                         className="editLinkStyle"
                                                         onClick={()=>{setDeleteModalShow(true); setIdDeleteModalShow(data.id)}}
@@ -106,7 +109,13 @@ const OfficerTable = props => {
                 </Row>
                 <Row>
                     <Col>
-                        <DeleteOfficerRecord
+                        <DetailInboxTable
+                            show={detailModal}
+                            onHide={() => setDetailModalShow(false)}
+                            store={dataDetailModal}                    />
+                    </Col>
+                    <Col>
+                        <DeleteInboxTableRecord
                             show={deleteModal}
                             onHide={() => setDeleteModalShow(false)}
                             idData={idDeleteModal}                    />
@@ -213,8 +222,8 @@ const TitleModalDelete = styled.div`
     margin-bottom:36px;
 `;
 
-OfficerTable.propTypes = {
+InboxTable.propTypes = {
     name : PropTypes.string
 }
 
-export default OfficerTable;
+export default InboxTable;

@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import $ from 'jquery'
 
-// import ButtonPrimary from '../../Button/ButtonPrimary'; 
 import Pagination from '../../Pagination/Pagination';
-import DeleteOfficerRecord from '../../Modal/OfficerTable/DeleteOfficerRecord';
-import './officertable.css';
+import DetailSchoolsTableRecord from '../../Modal/SchoolsTable/DetailSchoolsTableRecord';
+import AcceptOfficerRequest from '../../Modal/RequestOfficerTable/AcceptOfficerRequest';
+import './schoolslisttable.css';
 
 
 const dataFromBackEnd =[
@@ -25,13 +25,34 @@ const dataFromBackEnd =[
     {data: 11},
     {data: 12},
     {data: 13},
-]
+];
 
-const OfficerTable = props => {
+const dataDetail=[
+    {
+        schoolsName: "SDN 1",
+        schollsAddress: "Jl. ",
+        province: "Jawa Barat",
+        regency: "Depok",
+        district: "cinere",
+        village: "cinere",
+        eduStage: "SMA",
+        status: "negeri",
+        acreditation: "A",
+        npsn: "43243",
+        operator: "jajang",
+        email: "sdncinere@gmail.com",
+        telepon: "098881123132",
+    }
+];
+
+const SchoolsListTable = props => {
     const [prevButtonPagination,setPrevButtonPagination]=useState(0);
     const [nextButtonPagination,setNextButtonPagination]=useState(3);
-    const [deleteModal, setDeleteModalShow] = useState(false);    
-    const [idDeleteModal, setIdDeleteModalShow] = useState('');    
+    const [detailModal, setDetailModalShow] = useState(false);
+    const [dataDetailModal, setDataDetailModal] =useState([]);    
+    const [idDetailModal, setIdDetailModalShow] = useState('');    
+    const [acceptModal, setAcceptModalShow] = useState(false);    
+    const [idAcceptModal, setIdAcceptModalShow] = useState('');    
     let newPaginationData=[], indexPage=1;
     for(let i =0; i<dataFromBackEnd.length; i++){
         newPaginationData[i]={
@@ -53,16 +74,16 @@ const OfficerTable = props => {
     }
     return (
         <>
-            <Container id="administratorTableContainer">
+            <Container id="schoolsListTableContainer">
                 <Row>
                     <Col>
-                        <TableDIv className="divAdministratorTable">
+                        <TableDIv className="divSchoolsListTable">
                             <Table>
                                 <tbody>
                                     <tr>
+                                        <th>Nama Sekolah</th>
+                                        <th>NPSN</th>
                                         <th>Operator</th>
-                                        <th>Jabatan</th>
-                                        <th>Sekolah</th>
                                         <th>Email Sekolah</th>
                                         <th>Telepon</th>
                                         <th>Action</th>
@@ -70,16 +91,21 @@ const OfficerTable = props => {
                                     {props.store.map((data)=>{
                                         return(
                                             <tr>
-                                                <td className="borderRadiusFieldLeft">{data.officer}</td>
-                                                <td>{data.position}</td>
-                                                <td>{data.school}</td>
+                                                <td className="borderRadiusFieldLeft">{data.school}</td>
+                                                <td>{data.npsn}</td>
+                                                <td>{data.officer}</td>
                                                 <td>{data.email}</td>
                                                 <td>{data.phone}</td>
                                                 <td className="borderRadiusField">
+                                                    
                                                     <Link 
                                                         className="editLinkStyle"
-                                                        onClick={()=>{setDeleteModalShow(true); setIdDeleteModalShow(data.id)}}
-                                                    >Delete</Link>
+                                                        onClick={()=>{
+                                                            setDetailModalShow(true); 
+                                                            setIdDetailModalShow(data.id);
+                                                            setDataDetailModal(data);
+                                                        }}
+                                                    >Detail</Link>
                                                 </td>
                                             </tr>
                                         );
@@ -106,10 +132,18 @@ const OfficerTable = props => {
                 </Row>
                 <Row>
                     <Col>
-                        <DeleteOfficerRecord
-                            show={deleteModal}
-                            onHide={() => setDeleteModalShow(false)}
-                            idData={idDeleteModal}                    />
+                        <DetailSchoolsTableRecord
+                            show={detailModal}
+                            onHide={() => setDetailModalShow(false)}
+                            store={dataDetail}               
+                        />
+                    </Col>
+                    <Col>
+                        <AcceptOfficerRequest
+                            show={acceptModal}
+                            onHide={() => setAcceptModalShow(false)}
+                            idData={idAcceptModal}                    
+                        />
                     </Col>
                 </Row>
             </Container>
@@ -213,8 +247,8 @@ const TitleModalDelete = styled.div`
     margin-bottom:36px;
 `;
 
-OfficerTable.propTypes = {
+SchoolsListTable.propTypes = {
     name : PropTypes.string
 }
 
-export default OfficerTable;
+export default SchoolsListTable;
