@@ -108,7 +108,6 @@ class Schools extends Component {
                     />
                     <div style={{marginBottom: "351px"}}></div>
                 </section>
-
             </div>
         );
     }
