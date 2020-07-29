@@ -21,10 +21,16 @@ const InputFilePrimary =(props)=> {
                 <Row>
                     <Col> */}
                     <div style={{display: "inline-flex"}}>
-                        <InputFile id={props.idForinputPrimary[0].inputid} placeholder="Pilih File..." disabled />
+                        <InputFile id={props.idForinputPrimary[0].inputid} placeholder="Pilih File..." disabled 
+                        />
                         <DivButton className="fileUploadPrimary">
                             Select File
-                            <input id={props.idForinputPrimary[0].buttonid} type="file" class="upload" />
+                            <input 
+                                id={props.idForinputPrimary[0].buttonid} 
+                                type="file" 
+                                class="upload" 
+                                onChange={props.onChange}
+                            />
                         </DivButton>
                     </div>
                     {/* </Col>

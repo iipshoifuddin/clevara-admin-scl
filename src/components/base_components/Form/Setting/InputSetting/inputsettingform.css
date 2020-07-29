@@ -1,0 +1,46 @@
+#inputSettingFormContainer{
+    max-width: 100%;
+    padding-right: 35px;
+    padding-left: 35px;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+#inputSettingFormContainer > .row > .divColbackgroundInput{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#inputSettingFormContainer > .row > .buttonDeleteForJumbotronContent{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#inputSettingFormContainer > .row > .colButtonSaveCancelJumbotronBanner{
+    display: inline-flex;
+    margin-top: 40px;
+    max-width: 205px;
+}
+
+#inputSettingFormContainer > .row > .colButtonSaveCancelJumbotronBanner > #buttonAssetSecondary{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#inputSettingFormContainer > .row > .colButtonSaveCancelJumbotronBanner > #buttonAsset{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#inputSettingFormContainer > .row > .colFromPasswordDefault > div > div > .eyeClassForDefaultPassword > i:hover{
+    color: #B5B5B5 !important;
+}
+
+#inputSettingFormContainer > .row > .colForChangePassword > #buttonAsset{
+    justify-content: flex-start;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}

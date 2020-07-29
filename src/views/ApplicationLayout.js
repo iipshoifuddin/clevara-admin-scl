@@ -8,46 +8,25 @@ import SidebarCompnents from '../components/base_components/Headers/SidebarCompn
 
 const data = [
     {
-        name        :"Administrator",
+        name        :"Sekolah",
         icon        :"home",
         fontIcon    :"Feather",
         singleBarId : "firstSinglebarId",
         link        : "/home"
     },
     {
-        name        :"Operator",
-        icon        :"users",
-        fontIcon    :"Feather",
-        singleBarId : "SecondSinglebarId",
-        link        : "/officer"
-    },
-    {
-        name        :"Request",
-        icon        :"user-plus",
-        fontIcon    :"Feather",
-        singleBarId : "thirdSinglebarId",
-        link        : "/requset"
-    },
-    {
-        name        :"Daftar Sekolah",
-        icon        :"graduation-cap",
-        fontIcon    :"Entypo",
-        singleBarId : "fourthSinglebarId",
-        link        : "/schools"
-    },
-    {
-        name        :"Banner",
+        name        :"Foto",
         icon        :"image",
         fontIcon    :"Feather",
         singleBarId : "fifthSinglebarId",
-        link        : "/banner"
+        link        : "/foto"
     },
     {
-        name        :"Inbox",
-        icon        :"mail",
+        name        :"Setting",
+        icon        :"settings",
         fontIcon    :"Feather",
         singleBarId : "sixthSinglebarId",
-        link        : "/inbox"
+        link        : "/setting"
     },
 ]
 

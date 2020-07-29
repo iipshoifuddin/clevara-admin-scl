@@ -6,9 +6,11 @@ import $ from 'jquery';
 
 import logo from '../../../asset/logo/eduplus.png';
 import ButtonPrimary from '../Button/ButtonPrimary';
+import ButtonLoading from '../Button/ButtonLoading';
 import './logindashboard.css'
 
 const LoginForm = props => {
+    const [isButtonActive, setIsButtonActive] = useState(false);
     const IsEmailValid = () => {
         let valueInput, text="", formIsValid=true;
       
@@ -77,15 +79,10 @@ const LoginForm = props => {
         }
         return formIsValid;
     }
-    const buttonActivated = () =>{
-        if(buttonClickHandle()){
-            $("#buttonmesaageFormcontact").attr("onclick",props.onClickButton);
-        }
-    }
     $(document).ready(()=> {
         $("#buttonmesaageFormcontact").click(()=>{
             if(buttonClickHandle()){
-                $("#buttonmesaageFormcontact").attr("onclick",props.onClickButton);
+                setIsButtonActive(true);
             }
 
         });
@@ -130,10 +127,18 @@ const LoginForm = props => {
                                 <ForgotLink href="">Lupa Password?</ForgotLink>
                             </DivForgotPassword>
                             <DivButton>
-                                <ButtonPrimary
-                                    id="buttonmesaageFormcontact"
-                                    name="MASUK"
-                                />
+                                {props.onLoadingLogin ? 
+                                    <ButtonLoading 
+                                        id="buttonmesaageFormcontact"
+                                        name="MASUK"
+                                    />
+                                :   
+                                    <ButtonPrimary
+                                        id="buttonmesaageFormcontact"
+                                        name="MASUK"
+                                        onClick={isButtonActive ? props.onClickButton : null}
+                                    />
+                                }
                             </DivButton>
                         </DivFormLogin>
                     </Col>

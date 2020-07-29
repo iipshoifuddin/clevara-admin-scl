@@ -1,0 +1,176 @@
+@media screen and (min-width: 1024px){
+    /* #dropDownFourRegisterDesktopContainer{
+        max-width: 1024px;
+        padding-right: 85px;
+        padding-left: 85px;
+        margin-left: auto;
+        margin-right: auto;
+    } */
+    #dropDownFourRegisterDesktopContainer > .row > .col > div {
+        width: 264.6px;
+    }
+
+    #dropDownFourRegisterDesktopContainer > .row > .col > div > .inputClass > input {
+        width: 305px;
+    }
+    #mybuttonFilterDesktop > .iconClass {
+        text-align: right;
+        margin-left: -60px;
+    }
+    #mybuttonFilterDesktop > .placeholderclass {
+        text-align: left;
+        margin-left: -14px;
+    }
+}
+
+@media screen and (min-width: 1152px){
+    /* #dropDownFourRegisterDesktopContainer{
+        max-width: 1152px;
+        padding-right: 110px;
+        padding-left: 110px;
+        margin-left: auto;
+        margin-right: auto;
+    } */
+    #dropDownFourRegisterDesktopContainer > .row > .col > div {
+        width: 290.6px;
+    }
+
+    #dropDownFourRegisterDesktopContainer > .row > .col > div > .inputClass > input {
+        width: 305px;
+    }
+    #mybuttonFilterDesktop > .iconClass {
+        text-align: right;
+        margin-left: -38px;
+    }
+    #mybuttonFilterDesktop > .placeholderclass {
+        text-align: left;
+        margin-left: -14px;
+    }
+}
+@media screen and (min-width: 1280px){
+    /* #dropDownFourRegisterDesktopContainer{
+        max-width: 1280px;
+        padding-right: 125px;
+        padding-left: 125px;
+        margin-left: auto;
+        margin-right: auto;
+    } */
+    #dropDownFourRegisterDesktopContainer > .row > .col > div {
+        width: 323.3px;
+    }
+
+    #dropDownFourRegisterDesktopContainer > .row > .col > div > .inputClass > input {
+        width: 305px;
+    }
+    #mybuttonFilterDesktop > .iconClass {
+        text-align: right;
+        margin-left: -8px;
+    }
+    #mybuttonFilterDesktop > .placeholderclass {
+        text-align: left;
+        margin-left: -15px;
+    }
+}
+@media screen and (min-width: 1360px){
+    /* #dropDownFourRegisterDesktopContainer{
+        max-width: 1360px;
+        padding-right: 145px;
+        padding-left: 145px;
+        margin-left: auto;
+        margin-right: auto;
+    } */
+    #dropDownFourRegisterDesktopContainer > .row > .col > div {
+        width: 336.6px;
+    }
+
+    #dropDownFourRegisterDesktopContainer > .row > .col > div > .inputClass > input {
+        width: 305px;
+    }
+    #mybuttonFilterDesktop > .iconClass {
+        text-align: right;
+        margin-left: 8px;
+    }
+    #mybuttonFilterDesktop > .placeholderclass {
+        text-align: left;
+        margin-left: -19px;
+    }
+}
+
+@media screen and (min-width: 1366px){
+    /* #dropDownFourRegisterDesktopContainer{
+        max-width: 1366px;
+        padding-right: 145px;
+        padding-left: 145px;
+        margin-left: auto;
+        margin-right: auto; 
+    }*/
+    #dropDownFourRegisterDesktopContainer > .row > .col > div {
+        width: 343px;
+    }
+
+    #dropDownFourRegisterDesktopContainer > .row > .col > div > .inputClass > input {
+        width: 305px;
+    }
+    #mybuttonFilterDesktop > .iconClass {
+        text-align: right;
+        margin-left: 12px;
+    }
+    #mybuttonFilterDesktop > .placeholderclass {
+        text-align: left;
+        margin-left: -22px;
+    }
+}
+
+@media screen and (min-width: 1440px){
+    /* #dropDownFourRegisterDesktopContainer{
+        max-width: 1440px;
+        padding-right: 165px;
+        padding-left: 165px;
+        margin-left: auto;
+        margin-right: auto;
+    } */
+    #dropDownFourRegisterDesktopContainer > .row > .col > div {
+        width: 343px;
+    }
+
+    #dropDownFourRegisterDesktopContainer > .row > .col > div > .inputClass > input {
+        width: 305px;
+    }
+    #mybuttonFilterDesktop > .iconClass {
+        text-align: right;
+        margin-left: 12px;
+    }
+    #mybuttonFilterDesktop > .placeholderclass {
+        text-align: left;
+        margin-left: -22px;
+    }
+}
+
+#dropDownFourRegisterDesktopContainer{
+    display: contents;
+
+}
+#dropDownFourRegisterDesktopContainer > .row > .col > .errorClassDiv {
+    margin-bottom: 16px;
+    color: red;
+    font-size: 13px;
+}
+
+#myDropdownFilterFour > option {
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 14px;
+    line-height: 17px;
+    min-width: 100%;
+    width: 100%;
+    height: 37px;
+    letter-spacing: 0.0025em;
+    color: #000000;
+    padding : 10px 20px 5px 10px;
+    max-width: 170px;
+    max-height: 37px;
+}
+#myDropdownFilterFour > option:hover {
+    background: #1A6EB2;
+    color: #ffffff;
+}

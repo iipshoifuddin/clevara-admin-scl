@@ -51,7 +51,7 @@ const SidebarCompnents = (props) =>{
 
     }
     $(document).ready(function(){
-        document.getElementById("defaultOpenBadges").click();  
+        document.getElementById("defaultOpenBadges").click(); 
     })
     return (
         <>
