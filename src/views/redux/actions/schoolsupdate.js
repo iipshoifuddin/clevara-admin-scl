@@ -2,43 +2,45 @@ import axios from 'axios';
 
 export function shcoolsUpdateHaveError(bool) {
     return {
-        type: 'SCHOOLS_HAVE_ERROR',
+        type: 'SCHOOLS_UPDATE_HAVE_ERROR',
         hasError: bool
     };
 }
 
 export function schoolsUpdateAreLoading(bool) {
     return {
-        type: 'SCHOOLS_ARE_LOADING',
+        type: 'SCHOOLS_UPDATE_ARE_LOADING',
         isLoading: bool
     };
 }
 
 export function schoolsUpdateFetchDataSuccess(api) {
     return {
-        type: 'SCHOOLS_FETCH_DATA_SUCCESS',
+        type: 'SCHOOLS_UPDATE_FETCH_DATA_SUCCESS',
         api
     };
 }
 
-export function schoolsUpdateFetchData(url, token, data, data2 ) {
+export function schoolsUpdateFetchData(url, token, data ){
     return (dispatch) => {
         dispatch(schoolsUpdateAreLoading(true));
 
-        setTimeout(() => {
+        setTimeout(async() => {
                 const requestOptions = {
                     method: 'POST',
                     headers: { 
-                        'Content-Type': 'application/json',
+                        // 'Content-Type': 'application/json',
+                        // "Accept" : "application/json",
                         'Authorization': token,
-                        'My-Custom-Header': 'foobar'
+                        'My-Custom-Header': 'foobar',
                     },
-                    body: JSON.stringify(data),
-                    body: data2,     
+                    // body: JSON.stringify(data),
+                    body: data,                    
                 };
-                fetch(url, requestOptions)
+                
+                await fetch(url, requestOptions)
                 .then(response => {
-                    // console.log(response);
+                    // console.log(response.json());
                     if (response.status !== 200) {
                         throw Error(response.statusText);
                     }
@@ -50,12 +52,13 @@ export function schoolsUpdateFetchData(url, token, data, data2 ) {
                     dispatch(schoolsUpdateFetchDataSuccess(responseJSON));
 
                 })
-                .catch(()=>{
+                .catch((error)=>{
                     dispatch(shcoolsUpdateHaveError(true));
 
-                })
-                ;        
+                });
+                
                
         }, 500);
     };
 }
+

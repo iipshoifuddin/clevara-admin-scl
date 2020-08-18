@@ -1,38 +1,38 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export function shcoolsHaveError(bool) {
+export function extracurricularHaveError(bool) {
     return {
-        type: 'SCHOOLS_HAVE_ERROR',
+        type: 'EXTRACURRICULAR_HAVE_ERROR',
         hasError: bool
     };
 }
 
-export function schoolsAreLoading(bool) {
+export function extracurricularAreLoading(bool) {
     return {
-        type: 'SCHOOLS_ARE_LOADING',
+        type: 'EXTRACURRICULAR_ARE_LOADING',
         isLoading: bool
     };
 }
 
-export function schoolsFetchDataSuccess(api) {
+export function extracurricularFetchDataSuccess(api) {
     return {
-        type: 'SCHOOLS_FETCH_DATA_SUCCESS',
+        type: 'EXTRACURRICULAR_FETCH_DATA_SUCCESS',
         api
     };
 }
 
-export function facilitiesDeletehDataSuccess(api) {
+export function extracurricularDeletehDataSuccess(api) {
     return {
-        type: 'SCHOOLS_FETCH_DATA_SUCCESS',
+        type: 'EXTRACURRICULAR_DELETE_FETCH_DATA_SUCCESS',
         api
     };
 }
 
 
-export function schoolsFetchData(url, data) {
+export function extracurricularFetchData(url, data) {
     return (dispatch) => {
-        dispatch(schoolsAreLoading(true));
+        dispatch(extracurricularAreLoading(true));
 
         setTimeout(async() => {
             let valueToken="";
@@ -52,16 +52,16 @@ export function schoolsFetchData(url, data) {
             }
             axios.get(url, dataPost)
                 .then((response) => {
-                    // console.log(response.data);
+                    console.log(response.data);
                     if (response.status !== 200) {
                         throw Error(response.statusText);
                     }
-                    dispatch(schoolsAreLoading(false));
+                    dispatch(extracurricularAreLoading(false));
                     return response;
                 })
-                .then((response) => dispatch(schoolsFetchDataSuccess(response.data)))
+                .then((response) => dispatch(extracurricularFetchDataSuccess(response.data)))
                 .catch((error) => {
-                    dispatch(shcoolsHaveError(true));
+                    dispatch(extracurricularHaveError(true));
                 });
         
                
@@ -69,9 +69,9 @@ export function schoolsFetchData(url, data) {
     };
 }
 
-export function facilitiesDeletehData(url, token, data) {
+export function extracurricularDeletehData(url, token, data) {
     return (dispatch) => {
-        // dispatch(logoutAreLoading(true));
+        dispatch(extracurricularAreLoading(true));
 
         setTimeout(() => {
                 const requestOptions = {
@@ -84,6 +84,8 @@ export function facilitiesDeletehData(url, token, data) {
                     // body: JSON.stringify({ title: 'React POST Request' })
                     body: data,
                 };
+                console.log(url);
+                console.log(token);
                 // console.log(data);
                 for (var pair of data.entries()) {
                     console.log(pair[0]+ ', ' + pair[1]); 
@@ -91,20 +93,19 @@ export function facilitiesDeletehData(url, token, data) {
                 fetch(url, requestOptions)
                 .then(response => {
                     // console.log(response);
-                    // if (response.status !== 200) {
-                    //     throw Error(response.statusText);
-                    // }
-                    // dispatch(logoutAreLoading(false));
+                    if (response.status !== 200) {
+                        throw Error(response.statusText);
+                    }
+                    dispatch(extracurricularAreLoading(false));
                     return response.json();
                 })
                 .then(responseJSON => {
                     console.log(responseJSON);
                     // window.location.href = "/home";
-                    dispatch(facilitiesDeletehDataSuccess(responseJSON))
+                    dispatch(extracurricularDeletehDataSuccess(responseJSON))
                 })
                 .catch(()=>{
-                    // dispatch(logoutHaveError(true));
-
+                    dispatch(extracurricularHaveError(true));
                 })
                 ;        
                

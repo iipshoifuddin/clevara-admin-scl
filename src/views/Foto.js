@@ -15,17 +15,17 @@ import ProvinceForm from '../components/base_components/Form/Banner/Province/Pro
 import RegencyForm from '../components/base_components/Form/Banner/Regency/RegencyForm';
 import InputFotoForm from '../components/base_components/Form/Foto/InputFoto/InputFotoForm';
 
-import { 
-    settingFetchData, 
-    changePasswordDataFetchData,
-} from './redux/actions/setting';
+import{
+    fotoDataFetchData,
+    fotoFetchDeletehData,
+}from './redux/actions/fotodata';
 
 import { 
     requestTokenFetchData,
 } from './redux/actions/auth/requesttoken';
 
 import{
-    fotoFetchData
+    fotoFetchData,
 }from './redux/actions/foto';
 
 
@@ -87,7 +87,8 @@ const dummySchoolsTable = [
 ];
 
 //URL from BackEnd
-const getUrlBackend = "http://localhost:8000/"
+// const getUrlBackend = "http://localhost:8000/"
+const getUrlBackend = "https://backend.edukasiplus.com/";
 
 
 class Foto extends Component {
@@ -103,30 +104,22 @@ class Foto extends Component {
             stateSourceImage5:null,
         }
     }
-    componentDidMount = () =>{
-        this.IsAccesTokenSet();
-        this.RequestToken();
+    componentDidMount = async () =>{
+        await this.IsAccesTokenSet();
+        await this.RequestToken();
     }
     componentDidUpdate=async()=>{
-        // if(this.props.requestToken !== this.state.updateBreakToken){
-        //     this.getSettingData();
-        //     await this.setState({updateBreakToken: this.props.requestToken});
-        // }
+        if(this.props.requestToken !== this.state.updateBreakToken){
+            await this.getFotoData();
+            await this.setState({updateBreakToken: this.props.requestToken});
+        }
     }
     RequestToken=async()=>{
         console.log("req token function");
         let valueToken="";
-        try {
-            const getValueToken = await AsyncStorage.getItem('@access_token');
-            if(getValueToken !== null) {
-                valueToken+=getValueToken;
-            }
-        } 
-        catch(e) {
-            // error reading value
-        }
         await this.props.fetchDataRefreshToken(`${getUrlBackend}api/operator/refresh`, `Bearer ${valueToken}`);   
     }
+
     IsAccesTokenSet=async()=>{
         try {
             const value = await AsyncStorage.getItem('@access_token')
@@ -137,18 +130,61 @@ class Foto extends Component {
             // error reading value
         }
     }
+    
+    getFotoData=async()=>{
+        let valueToken="";
+        // try {
+        //     const getValueToken = await AsyncStorage.getItem('@access_token')
+        //     if(getValueToken !== null) {
+        //         valueToken+=getValueToken;
+        //     }
+        // } 
+        // catch(e) {
+        //     // error reading value
+        // }
+        const dataPost ={
+            headers: {
+                'Authorization': 'Bearer ' + valueToken,
+            }
+        }
+        
+        await this.props.fetchData(`${getUrlBackend}api/operator/school`, dataPost);
+    }
+
+    isImageNotEmpty=()=>{
+        let check=false;
+        if(this.state.stateSourceImage1 !== null){
+            check=true;
+        }
+        if(this.state.stateSourceImage2 !== null){
+            check=true;
+        }
+        if(this.state.stateSourceImage3 !== null){
+            check=true;
+        }
+        if(this.state.stateSourceImage4 !== null){
+            check=true;
+        }
+        if(this.state.stateSourceImage5 !== null){
+            check=true;
+        }
+        return check;
+    }
+
     onClickButtonHandle=async()=>{
-        if(this.state.stateSourceImage1 !==null){
+        if(this.isImageNotEmpty()){
             let valueToken="";
             //Create an object of formData 
-            const formData = new FormData(); 
-            
+            let formData = new FormData(); 
+
             // Update the formData object 
-            formData.append( 
-                "images[]", 
-                this.state.stateSourceImage1, 
-                this.state.stateSourceImage1.name 
-            ); 
+            if(this.state.stateSourceImage1 !==null){
+                formData.append( 
+                    "images[]", 
+                    this.state.stateSourceImage1, 
+                    this.state.stateSourceImage1.name 
+                ); 
+            }
             
             if(this.state.stateSourceImage2 !== null){
                 formData.append( 
@@ -179,7 +215,7 @@ class Foto extends Component {
                 ); 
             }
             //Details of the uploaded file 
-            console.log(this.state.stateSourceImage1);
+            // console.log(this.state.stateSourceImage1);
             try {
                 const getValueToken = await AsyncStorage.getItem('@access_token');
                 if(getValueToken !== null) {
@@ -192,6 +228,28 @@ class Foto extends Component {
             await this.props.fetchDataFoto(`${getUrlBackend}api/operator/school/image-upload`, `Bearer ${valueToken}`, formData);   
         }
     }
+    onClickButtonDeleteFotoHandle= async(dataID)=>{
+        let valueToken="";
+        try {
+            const getValueToken = await AsyncStorage.getItem('@access_token')
+            if(getValueToken !== null) {
+                valueToken+=getValueToken;
+            }
+        } 
+        catch(e) {
+            // error reading value
+        }
+        const dataPost ={
+            headers: {
+                'Authorization': 'Bearer ' + valueToken,
+            }
+        }
+        
+        await this.props.fetchDeleteFoto(`${getUrlBackend}api/operator/school/image-delete/${dataID}`, `Bearer ${valueToken}`);
+    }
+    onClickButtonLogout=()=>{
+        window.location.href="/logout";
+    }
     render() {
         // if (this.props.hasError) {
         //     return <p id="defaultOpenBadges">Sorry! There was an error loading the items</p>;
@@ -199,10 +257,18 @@ class Foto extends Component {
         // if (this.props.isLoading) {
         //     return <p id="defaultOpenBadges">Loading…</p>;
         // }
+        let newArrayFoto=[];
         if (this.props.uploadLoading) {
             return <p id="defaultOpenBadges">Loading…</p>;
         }
-        console.log(this.props.regency);
+
+        if(this.props.fotoData.length !==0){
+            this.props.fotoData.map((data, index)=>{
+                newArrayFoto[index]=data;
+            });
+        }
+
+        console.log(newArrayFoto);
 
         return (
             <div>
@@ -211,19 +277,26 @@ class Foto extends Component {
                     <DropDownListProfile 
                         titlePage="Foto"
                         onChangeSearch={(e)=>{console.log(e.target.value)}}
+                        onClickLogout={()=>{this.onClickButtonLogout()}}
                     />
                 </section>
                 <section className="tablesForRequestClass" id="bagdesForBannerJumbotronId">
                     <div style={{marginTop: "25px"}}></div>
                         <InputFotoForm
-                            store={storeData}
+                            store={newArrayFoto.length > 0 ? newArrayFoto : []}
                             // onChangeImage1={(e)=>{this.setState({stateSourceImage1: e.target.files[0]})}}
                             onChangeImage1={(e)=>{this.setState({stateSourceImage1: e.target.files[0]})}}
                             onChangeImage2={(e)=>{this.setState({stateSourceImage2: e.target.files[0]})}}
                             onChangeImage3={(e)=>{this.setState({stateSourceImage3: e.target.files[0]})}}
                             onChangeImage4={(e)=>{this.setState({stateSourceImage4: e.target.files[0]})}}
                             onChangeImage5={(e)=>{this.setState({stateSourceImage5: e.target.files[0]})}}
-                            onClickSaveButton={()=>{this.onClickButtonHandle()}}
+
+                            onClickDeleteButtonFoto={(e)=>{this.onClickButtonDeleteFotoHandle(e.target.value); this.getFotoData()}}
+                            // placeholderFoto1={newArrayFoto.length > 0 ? newArrayFoto[0].name : "" }
+                            // placeholderFoto2={newArrayFoto.length > 0 ? newArrayFoto[1].name : "" }
+                            // placeholderFoto3={newArrayFoto.length > 0 ? newArrayFoto[2].name : "" }
+
+                            onClickSaveButton={()=>{this.onClickButtonHandle(); this.getFotoData()}}
                         />
                     <div style={{marginBottom: "351px"}}></div>
                 </section>
@@ -234,17 +307,18 @@ class Foto extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        setting: state.setting,
+        fotoData: state.fotoData,    
         requestToken: state.requestToken,
-        hasError: state.settingHaveError,
-        isLoading: state.settingAreLoading,
         uploadLoading: state.fotoAreLoading,
+        hasError: state.fotoDataHaveError,
+        isLoading: state.fotoDataAreLoading,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (url, data) => dispatch(settingFetchData(url, data)),
+        fetchDeleteFoto: (url, data) => dispatch(fotoFetchDeletehData(url, data)),
+        fetchData: (url, data) => dispatch(fotoDataFetchData(url, data)),
         fetchDataFoto: (url, token, data) => dispatch(fotoFetchData(url, token, data)),
         fetchDataRefreshToken: (url, data) => dispatch(requestTokenFetchData(url, data)),
     };

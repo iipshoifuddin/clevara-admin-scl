@@ -10,14 +10,23 @@ import {
     loginFetchData,
 } from '../redux/actions/auth/login';
 
+import{
+    checkLoginFetchData,
+}from '../redux/actions/auth/checklogin';
+
 //URL from BackEnd
-const getUrlBackend = "http://localhost:8000/"
+// const getUrlBackend = "http://localhost:8000/"
+// const getUrlBackend = "http://139.180.184.84/"
+// const getUrlBackend = "http://edukasiplus.com/"
+const getUrlBackend = "https://backend.edukasiplus.com/";
 
 class Login extends Component {
     constructor(props){
         super(props);
  
         this.state = {
+            loginUpdate: [],
+            checkLoginUpadte: [],
             username: "",
             password: "",
         }
@@ -26,36 +35,52 @@ class Login extends Component {
         this.IsAccesTokenSet();
     }
     IsAccesTokenSet=async()=>{
+        let permission=true;
         try {
             const value = await AsyncStorage.getItem('@access_token')
             if(value !== null) {
                 window.location.href="/home";
+                // permission=false;
             }
-            // else if(value === null){
-            //     window.location.href="/login";
-            // }
-            console.log(value)
         } catch(e) {
             // error reading value
         }
+        // return permission;
     }
-    componentDidUpdate=()=>{
+    isLoginSuccess=async()=>{
+        await this.props.fetchCheckLogin(`${getUrlBackend}api/operator/school`);   
+    }
+    componentDidUpdate=async()=>{
         if(this.props.login.length !== 0){
             // console.log(this.props.login.access_token);
             const storeData = async (value) => {
                 try {
                   await AsyncStorage.setItem('@access_token', value);
-                  window.location.href="/home";
+                //   window.location.href="/home";
+                    // await this.isLoginSuccess();
                 } catch (e) {
                   // saving error
                 }
             }
             storeData(this.props.login.access_token);
         }
+        if(this.props.login !== this.state.loginUpdate){
+            if(this.props.login !== 0){
+                await this.isLoginSuccess();
+                this.setState({loginUpdate: this.props.login});    
+            }
+        }
         if (this.props.hasError){    
             SweetAlert("Login Gagal !","Email atau Password Tidak Cocok.", "error" );
             this.props.fetchError(false);   
         }
+        if (this.props.checkLogin !== this.state.checkLoginUpadte){    
+            if(this.props.checkLogin.length !== 0){
+                window.location.href="/home";
+            }
+            this.setState({checkLoginUpadte: this.props.checkLogin});
+        }
+
         console.log(this.props.hasError);
     }
     loginProccessFunction=async()=>{
@@ -78,6 +103,8 @@ class Login extends Component {
         // if (this.props.isLoading) {
         //     return <p id="defaultOpenBadges">Loading…</p>;
         // }
+        console.log(this.props.login);
+
         return (
             <div>
                 <LoginForm 
@@ -94,6 +121,7 @@ class Login extends Component {
 const mapStateToProps = (state) => {
     return {
         login: state.login,
+        checkLogin: state.checkLogin,
         hasError: state.loginHaveError,
         isLoading: state.loginAreLoading,
     };
@@ -103,7 +131,11 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (url, data) => dispatch(loginFetchData(url, data)),
         fetchError:()=>dispatch(disableLoginError()),
+        fetchCheckLogin:(url)=>dispatch(checkLoginFetchData(url)),
+
     };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+

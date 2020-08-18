@@ -35,6 +35,7 @@ const fiveSlideJumbotronData=[
 const SchoolsForm = (props)=> {
     const [maxEskul, setMaxEskul]=useState(props.stroreEskulValueLength);
     const [maxFacility, setMaxFacility]=useState(props.stroreFacilityValueLength);
+    const [maxMajor, setMaxMajor]=useState(props.stroreMajorValueLength);
 
     
     const [limitLoopJumbotron, setLimitLoopJumbotron]=useState(1);
@@ -92,7 +93,7 @@ const SchoolsForm = (props)=> {
                             buttonClass="educationStageButtonClass"
                             className="educationStageClassName"
                             placeholder="Pilih Jenjang Pendidikan"
-                            onClick={()=>{}}
+                            onClick={props.onClickEduStage}
                         />
                     </Col>
                     <Col>
@@ -334,7 +335,7 @@ const SchoolsForm = (props)=> {
                                     id="schoolsNameFormContactComponent"
                                     type="text" 
                                     name="schoolsname"
-                                    placeholder="Masukan Sumlah Siswa"
+                                    placeholder="Masukan Jumlah Siswa"
                                     onChange={props.onChangeTotalOfStudent}
                                     // onKeyUp={()=>{IsSchoolsNameValid()}}
                                     disabled={props.schoolsDisable}
@@ -624,16 +625,30 @@ const SchoolsForm = (props)=> {
                                         placeholder={data.value !== null ? data.value : `Masukan Fasilitas ${data.numb}`}
                                         onChange={props.onChangeFacilities}
                                         // onKeyUp={()=>{IsSchoolsNameValid()}}
-                                        disabled={props.schoolsDisable}
+                                        disabled={data.value !== null ? true : false}
                                     />
                                 </div>
+                                {data.value !== null ?
+                                <DivForButtonDelete>
+                                    <ButtonDelete value={data.id}
+                                        className="buttonDeleteFacilityClass"
+                                        onClick={props.onClickDeleteButtonFacilities}
+                                    >
+                                        <Icon  
+                                            name="delete" 
+                                            color="#1A6EB2"
+                                            font="MaterialCommunityIcons"
+                                            size={22} 
+                                        />
+                                    </ButtonDelete>
+                                </DivForButtonDelete> : ""}
                             </DivInputSchools>)
                             ;
                         })}
                         <DivAddItemContent
                            onClick={()=>{setMaxFacility(maxFacility+1)}}             
                         >
-                            Tambah Ekstrakulikuller +
+                            Tambah Fasilitas +
                         </DivAddItemContent>
                     </Col>
                 </Row>            
@@ -662,9 +677,23 @@ const SchoolsForm = (props)=> {
                                         placeholder={data.value !== null ? data.value : `Masukan Ekstrakulikuller ${data.numb}`}
                                         onChange={props.onChangeEskul}
                                         // onKeyUp={()=>{IsSchoolsNameValid()}}
-                                        disabled={props.schoolsDisable}
+                                        disabled={data.value !== null ? true : false}
                                     />
                                 </div>
+                                {data.value !== null ?
+                                <DivForButtonDelete>
+                                        <ButtonDelete value={data.id}
+                                            className="buttonDeleteFacilityClass"
+                                            onClick={props.onClickDeleteButtonEskul}
+                                        >
+                                            <Icon  
+                                                name="delete" 
+                                                color="#1A6EB2"
+                                                font="MaterialCommunityIcons"
+                                                size={22} 
+                                            />
+                                        </ButtonDelete>
+                                </DivForButtonDelete> : ""}
                             </DivInputSchools>)
                             ;
                         })}
@@ -672,6 +701,58 @@ const SchoolsForm = (props)=> {
                            onClick={()=>{setMaxEskul(maxEskul+1)}}             
                         >
                             Tambah Ekstrakulikuller +
+                        </DivAddItemContent>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="divColbackgroundInput">
+                        <LineConten />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <div style={{marginTop: "28px"}}></div>
+                        <TitleEveryDiv>Jurusan</TitleEveryDiv>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        {
+                        props.storeMajor.slice(0, maxMajor).map((data, index)=>{
+                            return(<DivInputSchools {...props}>
+                                <DivTitle>{`Jurusan ${data.numb}`}</DivTitle>
+                                <div className="inputClass">
+                                    <InputEmail 
+                                        id="eskulNameFormContactComponent"
+                                        type="text" 
+                                        name={data.name}
+                                        placeholder={data.value !== null ? data.value : `Masukan Jurusan ${data.numb}`}
+                                        onChange={props.onChangeMajor}
+                                        // onKeyUp={()=>{IsSchoolsNameValid()}}
+                                        disabled={data.value !== null ? true : false}
+                                    />
+                                </div>
+                                {data.value !== null ?
+                                <DivForButtonDelete>
+                                        <ButtonDelete value={data.id}
+                                            className="buttonDeleteFacilityClass"
+                                            onClick={props.onClickDeleteButtonMajor}
+                                        >
+                                            <Icon  
+                                                name="delete" 
+                                                color="#1A6EB2"
+                                                font="MaterialCommunityIcons"
+                                                size={22} 
+                                            />
+                                        </ButtonDelete>
+                                </DivForButtonDelete> : ""}
+                            </DivInputSchools>)
+                            ;
+                        })}
+                        <DivAddItemContent
+                           onClick={()=>{setMaxMajor(maxMajor+1)}}             
+                        >
+                            Tambah Jurusan +
                         </DivAddItemContent>
                     </Col>
                 </Row>
@@ -700,6 +781,19 @@ const SchoolsForm = (props)=> {
         </>
     );
 }
+
+const ButtonDelete = styled.button`
+    background: none;
+    color: none;
+    outline: none;
+    border: none;
+`;
+const DivForButtonDelete= styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-right: -40px;
+    margin-top: -27px;
+`;
 
 const DivAddItemContent = styled.a`
     height: 17px;

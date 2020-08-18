@@ -1,38 +1,38 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export function shcoolsHaveError(bool) {
+export function majorHaveError(bool) {
     return {
-        type: 'SCHOOLS_HAVE_ERROR',
+        type: 'MAJOR_HAVE_ERROR',
         hasError: bool
     };
 }
 
-export function schoolsAreLoading(bool) {
+export function majorAreLoading(bool) {
     return {
-        type: 'SCHOOLS_ARE_LOADING',
+        type: 'MAJOR_ARE_LOADING',
         isLoading: bool
     };
 }
 
-export function schoolsFetchDataSuccess(api) {
+export function majorFetchDataSuccess(api) {
     return {
-        type: 'SCHOOLS_FETCH_DATA_SUCCESS',
+        type: 'MAJOR_FETCH_DATA_SUCCESS',
         api
     };
 }
 
-export function facilitiesDeletehDataSuccess(api) {
+export function majorDeletehDataSuccess(api) {
     return {
-        type: 'SCHOOLS_FETCH_DATA_SUCCESS',
+        type: 'MAJOR_DELETE_FETCH_DATA_SUCCESS',
         api
     };
 }
 
 
-export function schoolsFetchData(url, data) {
+export function majorFetchData(url, data) {
     return (dispatch) => {
-        dispatch(schoolsAreLoading(true));
+        dispatch(majorAreLoading(true));
 
         setTimeout(async() => {
             let valueToken="";
@@ -56,12 +56,12 @@ export function schoolsFetchData(url, data) {
                     if (response.status !== 200) {
                         throw Error(response.statusText);
                     }
-                    dispatch(schoolsAreLoading(false));
+                    dispatch(majorAreLoading(false));
                     return response;
                 })
-                .then((response) => dispatch(schoolsFetchDataSuccess(response.data)))
+                .then((response) => dispatch(majorFetchDataSuccess(response.data)))
                 .catch((error) => {
-                    dispatch(shcoolsHaveError(true));
+                    dispatch(majorHaveError(true));
                 });
         
                
@@ -69,21 +69,33 @@ export function schoolsFetchData(url, data) {
     };
 }
 
-export function facilitiesDeletehData(url, token, data) {
+export function majorDeletehData(url, data) {
     return (dispatch) => {
-        // dispatch(logoutAreLoading(true));
+        dispatch(majorAreLoading(true));
 
-        setTimeout(() => {
+        setTimeout(async() => {
+                let valueToken="";
+                try {
+                    const getValueToken = await AsyncStorage.getItem('@access_token')
+                    if(getValueToken !== null) {
+                        valueToken+=getValueToken;
+                    }
+                } 
+                catch(e) {
+                    // error reading value
+                }
                 const requestOptions = {
                     method: 'POST',
                     headers: { 
                         // 'Content-Type': 'application/json',
-                        'Authorization': token,
+                        'Authorization': 'Bearer ' + valueToken,
                         'My-Custom-Header': 'foobar'
                     },
                     // body: JSON.stringify({ title: 'React POST Request' })
                     body: data,
                 };
+                // console.log(url);
+                // console.log(token);
                 // console.log(data);
                 for (var pair of data.entries()) {
                     console.log(pair[0]+ ', ' + pair[1]); 
@@ -91,20 +103,19 @@ export function facilitiesDeletehData(url, token, data) {
                 fetch(url, requestOptions)
                 .then(response => {
                     // console.log(response);
-                    // if (response.status !== 200) {
-                    //     throw Error(response.statusText);
-                    // }
-                    // dispatch(logoutAreLoading(false));
+                    if (response.status !== 200) {
+                        throw Error(response.statusText);
+                    }
+                    dispatch(majorAreLoading(false));
                     return response.json();
                 })
                 .then(responseJSON => {
                     console.log(responseJSON);
                     // window.location.href = "/home";
-                    dispatch(facilitiesDeletehDataSuccess(responseJSON))
+                    dispatch(majorDeletehDataSuccess(responseJSON))
                 })
                 .catch(()=>{
-                    // dispatch(logoutHaveError(true));
-
+                    dispatch(majorHaveError(true));
                 })
                 ;        
                

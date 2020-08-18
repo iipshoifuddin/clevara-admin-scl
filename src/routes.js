@@ -5,6 +5,7 @@ import Home from './views/Home';
 import Foto from './views/Foto';
 import Setting from './views/Setting';
 import Login from './views/Auth/Login';
+import Logout from './views/Auth/Logout';
 import Page404 from './views/errors/Page404';
 
 const BaseRoute = () => {
@@ -15,6 +16,7 @@ const BaseRoute = () => {
                 <Route exact path="/home" component={Home} />
                 <Route exact path="/foto" component={Foto} />
                 <Route exact path="/setting" component={Setting} />
+                <Route exact path="/logout" component={Logout} />
                 <Route exact path="" component={Page404} />
             </Switch>
         </>

@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 // import RequestToken from './Auth/RequestToken';
 import DropDownListProfile from '../components/base_components/DropDownList/DropDownListProfile/DropDownListProfile';
 import InputSettingForm from '../components/base_components/Form/Setting/InputSetting/InputSettingForm';
+import Logout from './Auth/Logout';
 
 import { 
     settingFetchData, 
@@ -74,7 +75,8 @@ const dummySchoolsTable = [
 ];
 
 //URL from BackEnd
-const getUrlBackend = "http://localhost:8000/"
+// const getUrlBackend = "http://localhost:8000/";
+const getUrlBackend = "https://backend.edukasiplus.com/";
 
 
 class Setting extends Component {
@@ -87,9 +89,9 @@ class Setting extends Component {
             newPassword:"",
         }
     }
-    componentDidMount = () =>{
-        this.IsAccesTokenSet();
-        this.RequestToken();
+    componentDidMount =async () =>{
+        await this.IsAccesTokenSet();
+        await this.RequestToken();
 
         //Empty State Load
         // this.setState({updateBreakToken: []});
@@ -101,17 +103,17 @@ class Setting extends Component {
         }
     }
     RequestToken=async()=>{
-        console.log("req token function");
+        // console.log("req token function");
         let valueToken="";
-        try {
-            const getValueToken = await AsyncStorage.getItem('@access_token');
-            if(getValueToken !== null) {
-                valueToken+=getValueToken;
-            }
-        } 
-        catch(e) {
-            // error reading value
-        }
+        // try {
+        //     const getValueToken = await AsyncStorage.getItem('@access_token');
+        //     if(getValueToken !== null) {
+        //         valueToken+=getValueToken;
+        //     }
+        // } 
+        // catch(e) {
+        //     // error reading value
+        // }
         await this.props.fetchDataRefreshToken(`${getUrlBackend}api/operator/refresh`, `Bearer ${valueToken}`);   
     }
     IsAccesTokenSet=async()=>{
@@ -126,15 +128,15 @@ class Setting extends Component {
     }
     getSettingData=async()=>{
         let valueToken="";
-        try {
-            const getValueToken = await AsyncStorage.getItem('@access_token')
-            if(getValueToken !== null) {
-                valueToken+=getValueToken;
-            }
-        } 
-        catch(e) {
-            // error reading value
-        }
+        // try {
+        //     const getValueToken = await AsyncStorage.getItem('@access_token')
+        //     if(getValueToken !== null) {
+        //         valueToken+=getValueToken;
+        //     }
+        // } 
+        // catch(e) {
+        //     // error reading value
+        // }
         const dataPost ={
             headers: {
                 'Authorization': 'Bearer ' + valueToken,
@@ -166,6 +168,9 @@ class Setting extends Component {
         
         await this.props.fetchDataChangePassword(`${getUrlBackend}api/operator/change_password`, `Bearer ${valueToken}`, dataPost );
     }
+    onClickButtonLogout=()=>{
+        window.location.href="/logout";
+    }
     render() {
         // console.log(this.props.setting);
         let newArrayOpratorProfile=[];
@@ -181,6 +186,7 @@ class Setting extends Component {
                     <DropDownListProfile 
                         titlePage="Setting"
                         onChangeSearch={(e)=>{console.log(e.target.value)}}
+                        onClickLogout={()=>{this.onClickButtonLogout()}}
                     />
                 </section>
                 <section className="tablesForRequestClass" id="bagdesForBannerJumbotronId">

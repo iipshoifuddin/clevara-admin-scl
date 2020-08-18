@@ -1,7 +1,8 @@
+import SweetAlert from '../../../components/base_components/SweetAlert/SweetAlert';
 
-export function schoolsHaveError(state = false, action) {
+export function shcoolsUpdateHaveError(state = false, action) {
     switch (action.type) {
-        case 'SCHOOLS_HAVE_ERROR':
+        case 'SCHOOLS_UPDATE_HAVE_ERROR':
             return action.hasError;
 
         default:
@@ -9,9 +10,9 @@ export function schoolsHaveError(state = false, action) {
     }
 }
 
-export function schoolsAreLoading(state = false, action) {
+export function schoolsUpdateAreLoading(state = false, action) {
     switch (action.type) {
-        case 'SCHOOLS_ARE_LOADING':
+        case 'SCHOOLS_UPDATE_ARE_LOADING':
             return action.isLoading;
 
         default:
@@ -19,72 +20,16 @@ export function schoolsAreLoading(state = false, action) {
     }
 }
 
-export function schools(state = [], action) {
+export function schoolsUpdate(state = [], action) {
     switch (action.type) {
-        case 'SCHOOLS_FETCH_DATA_SUCCESS':
-            // console.log(action);
-            let convertArrayData=[];
-            convertArrayData[0]=action.api.schools;
-            return convertArrayData;
+        case 'SCHOOLS_UPDATE_FETCH_DATA_SUCCESS':
+            console.log(action.api.success);
+            if(action.api.success===true){
+                SweetAlert("Upload Berhasil !","Data berhasil di Upload.", "success" );
+            }
+            return action.api;
 
         default:
             return state;
     }
 }
-
-export function schoolsCost(state = [], action) {
-    switch (action.type) {
-        case 'SCHOOLS_FETCH_DATA_SUCCESS':
-            // console.log(action);
-            // let convertArrayData=[];
-            // convertArrayData[0]=;
-            // console.log(action.api.schools.costs)
-            return [action.api.schools.costs];
-
-        default:
-            return state;
-    }
-}
-
-export function registrationSchools(state = [], action) {
-    switch (action.type) {
-        case 'SCHOOLS_FETCH_DATA_SUCCESS':
-            // console.log(action);
-            // let convertArrayData=[];
-            // convertArrayData[0]=;
-            // console.log(action.api.schools.costs)
-            return [action.api.schools.registration];
-
-        default:
-            return state;
-    }
-}
-
-export function schoolsFacilities(state = [], action) {
-    switch (action.type) {
-        case 'SCHOOLS_FETCH_DATA_SUCCESS':
-            // console.log(action);
-            // let convertArrayData=[];
-            // convertArrayData[0]=;
-            // console.log(action.api.schools.costs)
-            return action.api.schools.facilities;
-
-        default:
-            return state;
-    }
-}
-
-export function schoolsExtracurricular(state = [], action) {
-    switch (action.type) {
-        case 'SCHOOLS_FETCH_DATA_SUCCESS':
-            // console.log(action);
-            // let convertArrayData=[];
-            // convertArrayData[0]=;
-            // console.log(action.api.schools.costs)
-            return action.api.schools.extracurricular;
-
-        default:
-            return state;
-    }
-}
-

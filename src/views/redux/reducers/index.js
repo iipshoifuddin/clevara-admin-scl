@@ -7,10 +7,22 @@ import{
 } from './auth/login';
 
 import{
+    logoutHaveError,
+    logoutAreLoading,
+    logout,
+} from './auth/logout'
+
+import{
     requestToken,
     requestTokenAreLoading,
     requestTokenHaveError,
 } from './auth/requesttoken';
+
+import{
+    checkLogin,
+    checkLoginAreLoading,
+    checkLoginHaveError,
+}from './auth/checklogin';
 
 import{
     settingHaveError,
@@ -38,8 +50,34 @@ import{
     schoolsCost,
     registrationSchools,
     schoolsFacilities,
-    schoolsExtracurricular,
+    // schoolsExtracurricular,
 }from './schools';
+
+import{
+    extracurricularHaveError,
+    extracurricularAreLoading,
+    extracurricular,
+    extracurricularDelete,
+} from './extracurricular';
+
+import{
+    majorHaveError,
+    majorAreLoading,
+    major,
+    majorDelete,
+}from './major';
+
+import{
+    shcoolsUpdateHaveError,
+    schoolsUpdateAreLoading,
+    schoolsUpdate,
+} from './schoolsupdate';
+
+import{
+    fotoDataHaveError,
+    fotoDataAreLoading,
+    fotoData,
+}from './fotodata';
 
 // import { items, itemsHaveError, itemsAreLoading } from './items';
 
@@ -47,6 +85,10 @@ export default combineReducers({
     requestToken,
     requestTokenAreLoading,
     requestTokenHaveError,
+
+    checkLogin,
+    checkLoginAreLoading,
+    checkLoginHaveError,
 
     // items, 
     // itemsAreLoading,
@@ -56,6 +98,10 @@ export default combineReducers({
     loginAreLoading,
     login,
 
+    logoutHaveError,
+    logoutAreLoading,
+    logout,
+
     settingHaveError,
     settingAreLoading,
     setting,
@@ -64,6 +110,10 @@ export default combineReducers({
     fotoHaveError,
     fotoAreLoading,
     foto,
+
+    fotoDataHaveError,
+    fotoDataAreLoading,
+    fotoData,
 
     provincelist,
     regencylist,
@@ -75,6 +125,21 @@ export default combineReducers({
     schoolsCost,
     registrationSchools,
     schoolsFacilities,
-    schoolsExtracurricular,
+    // schoolsExtracurricular,
+
+    extracurricularHaveError,
+    extracurricularAreLoading,
+    extracurricular,
+    extracurricularDelete,
+
+    majorHaveError,
+    majorAreLoading,
+    major,
+    majorDelete,
+
+    shcoolsUpdateHaveError,
+    schoolsUpdateAreLoading,
+    schoolsUpdate,
+
 });
 

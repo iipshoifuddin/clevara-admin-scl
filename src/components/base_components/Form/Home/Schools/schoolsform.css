@@ -44,3 +44,8 @@
     margin-right: 0px;
     margin-left: 0px;
 }
+
+.buttonDeleteFacilityClass > i {
+    pointer-events:none !important;
+
+}

@@ -11,6 +11,7 @@ import ButtonPrimary from '../../../Button/ButtonPrimary';
 import ButtonSecondary from '../../../Button/ButtonSecondary';
 import InputFilePrimary from '../../../Input/InputFilePrimary';
 import './inputfotoform.css';
+import '../../../Icon/Icon';
 
 const fiveSlideJumbotronData=[
     {
@@ -49,8 +50,24 @@ const InputFotoForm = (props)=> {
                                 }
                             ]}
                             onChange={props.onChangeImage1}
-                            // onChange={(e)=>{console.log(e.target.file[0])}}
+                            onSelectDisable={props.store[0] === undefined ? false : true}
+                            placeholderFoto={props.store[0] !== undefined ? props.store[0].name : "Pilih File"}
                         />
+                        {props.store[0] !== undefined ? 
+                        <DivForButtonDelete>
+                            <ButtonDelete 
+                                value={props.store[0] !== undefined ? props.store[0].id : ""}
+                                className="buttonDeleteFacilityClass"
+                                onClick={props.onClickDeleteButtonFoto}
+                            >
+                                <Icon  
+                                    name="delete" 
+                                    color="#1A6EB2"
+                                    font="MaterialCommunityIcons"
+                                    size={24} 
+                                />
+                            </ButtonDelete>
+                        </DivForButtonDelete> : ""}
                     </Col>
                 </Row>
 
@@ -69,7 +86,25 @@ const InputFotoForm = (props)=> {
                                 }
                             ]}
                             onChange={props.onChangeImage2}
+                            onSelectDisable={props.store[1] === undefined ? false : true}
+                            placeholderFoto={props.store[1] !== undefined ? props.store[1].name : "Pilih File"}
                         />
+                        {props.store[1] !== undefined ? 
+                        <DivForButtonDelete>
+                            <ButtonDelete 
+                                value={props.store[1] !== undefined ? props.store[1].id : ""}
+                                className="buttonDeleteFacilityClass"
+                                onClick={props.onClickDeleteButtonFoto}
+                            >
+                                <Icon  
+                                    name="delete" 
+                                    color="#1A6EB2"
+                                    font="MaterialCommunityIcons"
+                                    size={24} 
+                                />
+                            </ButtonDelete>
+                        </DivForButtonDelete> 
+                        : "" }
                     </Col>
                 </Row>
                 <Row>
@@ -87,7 +122,24 @@ const InputFotoForm = (props)=> {
                                 }
                             ]}
                             onChange={props.onChangeImage3}
+                            onSelectDisable={props.store[2] === undefined ? false : true}
+                            placeholderFoto={props.store[2] !== undefined ? props.store[2].name : "Pilih File"}
                         />
+                        {props.store[2] !== undefined ? 
+                        <DivForButtonDelete>
+                            <ButtonDelete 
+                                value={props.store[2] !== undefined ? props.store[2].id : ""}
+                                className="buttonDeleteFacilityClass"
+                                onClick={props.onClickDeleteButtonFoto}
+                            >
+                                <Icon  
+                                    name="delete" 
+                                    color="#1A6EB2"
+                                    font="MaterialCommunityIcons"
+                                    size={24} 
+                                />
+                            </ButtonDelete>
+                        </DivForButtonDelete> : "" }
                     </Col>
                 </Row>
                 <Row>
@@ -105,7 +157,24 @@ const InputFotoForm = (props)=> {
                                 }
                             ]}
                             onChange={props.onChangeImage4}
+                            onSelectDisable={props.store[3] === undefined ? false : true}
+                            placeholderFoto={props.store[3] !== undefined ? props.store[3].name : "Pilih File"}
                         />
+                        {props.store[3] !== undefined ? 
+                        <DivForButtonDelete>
+                            <ButtonDelete 
+                                value={props.store[3] !== undefined ? props.store[3].id : ""}
+                                className="buttonDeleteFacilityClass"
+                                onClick={props.onClickDeleteButtonFoto}
+                            >
+                                <Icon  
+                                    name="delete" 
+                                    color="#1A6EB2"
+                                    font="MaterialCommunityIcons"
+                                    size={24} 
+                                />
+                            </ButtonDelete>
+                        </DivForButtonDelete> : "" } 
                     </Col>
                 </Row>
                 <Row>
@@ -123,7 +192,24 @@ const InputFotoForm = (props)=> {
                                 }
                             ]}
                             onChange={props.onChangeImage5}
+                            onSelectDisable={props.store[4] === undefined ? false : true}
+                            placeholderFoto={props.store[4] !== undefined ? props.store[4].name : "Pilih File"}
                         />
+                        {props.store[4] !== undefined ? 
+                        <DivForButtonDelete>
+                            <ButtonDelete 
+                                value={props.store[4] !== undefined ? props.store[4].id : ""}
+                                className="buttonDeleteFacilityClass"
+                                onClick={props.onClickDeleteButtonFoto}
+                            >
+                                <Icon  
+                                    name="delete" 
+                                    color="#1A6EB2"
+                                    font="MaterialCommunityIcons"
+                                    size={24} 
+                                />
+                            </ButtonDelete>
+                        </DivForButtonDelete> : ""}
                     </Col>
                 </Row>
                 <Row>
@@ -151,6 +237,19 @@ const InputFotoForm = (props)=> {
         </>
     );
 }
+
+const ButtonDelete = styled.button`
+    background: none;
+    color: none;
+    outline: none;
+    border: none;
+`;
+const DivForButtonDelete= styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-right: -40px;
+    margin-top: -5px;
+`;
 
 const ButttonAddConten = styled.a`
     font-style: normal;

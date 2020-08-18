@@ -90,10 +90,10 @@ const DropDownListProfile = props => {
                                     <option value="az" onClick={props.onClick}>Nando</option>
                                 </li>
                                 <li onClick={(e)=>{hidefunction()}}>
-                                    <option value="za" onClick={props.onClick}>My profile</option>
+                                    <option value="za" onClick={props.onClickProfile}>My profile</option>
                                 </li>
                                 <li onClick={(e)=>{hidefunction()}}>
-                                    <option value="za" onClick={props.onClick}>Logout</option>
+                                    <option value="za" onClick={props.onClickLogout}>Logout</option>
                                 </li>
                             </div>
                         </div>

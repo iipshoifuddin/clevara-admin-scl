@@ -16,7 +16,19 @@ import{
 
 import { 
     schoolsFetchData, 
+    facilitiesDeletehData,
 } from './redux/actions/schools';
+
+import{
+    extracurricularFetchData,
+    extracurricularDeletehData
+}from './redux/actions/extracurricular'
+
+import{
+    majorFetchData,
+    majorDeletehData
+}from './redux/actions/major'
+
 
 import { 
     requestTokenFetchData,
@@ -27,7 +39,8 @@ import{
 } from './redux/actions/schoolsupdate';
 
 //URL from BackEnd
-const getUrlBackend = "http://localhost:8000/"
+// const getUrlBackend = "http://localhost:8000/";
+const getUrlBackend = "https://backend.edukasiplus.com/";
 
 const dataFacilities=[
     {
@@ -139,6 +152,62 @@ const dataEskul=[
     }
 ];
 
+const dataMajor=[
+    {
+        numb:1,   
+        name:"major1",
+        value:null,
+    },
+    {
+        numb:2,
+        name:"major2",
+        value:null
+
+    },
+    {
+        numb:3,
+        name:"major3",
+        value:null,
+    },
+    {
+        numb:4,
+        name:"major4",
+        value:null,
+    },
+    {
+        numb:5,
+        name:"major5",
+        value:null,
+    },
+    {
+        numb:6,   
+        name:"major6",
+        value:null,
+    },
+    {
+        numb:7,
+        name:"major7",
+        value:null
+
+    },
+    {
+        numb:8,
+        name:"major8",
+        value:null,
+    },
+    {
+        numb:9,
+        name:"major9",
+        value:null,
+    },
+    {
+        numb:10,
+        name:"major10",
+        value:null,
+    }
+];
+
+
 
 class Home extends Component {
     constructor(props){
@@ -147,6 +216,14 @@ class Home extends Component {
         this.state = {
             updateBreakToken:[],
             updateSchoolsData:[],
+
+            updateArrayFasility:null,
+            updateArrayEskul:null,
+            updateArrayMajor:null,
+            varForStopReqDeleteFacilities:null,
+            varForStopReqDeleteEskul:null,
+            varForStopReqDeleteMajor:null,
+
 
             province_id: 0,
             city_id: 0,
@@ -158,6 +235,7 @@ class Home extends Component {
             //Data Sekolah
             schoolsNameValue: "",
             curriculumSchoolsValue: "",
+            eduStage:"",
             npsnValue: "",
 
             //Status Sekolah
@@ -211,17 +289,30 @@ class Home extends Component {
             eskul8: "",
             eskul9: "",
             eskul10: "",
+
+            major1: "",
+            major2: "",
+            major3: "",
+            major4: "",
+            major5: "",
+            major6: "",
+            major7: "",
+            major8: "",
+            major9: "",
+            major10: "",
         }
     }
-    componentDidMount=()=>{
-        this.IsAccesTokenSet();
-        this.RequestToken();
+    componentDidMount=async()=>{
+        await this.IsAccesTokenSet();
+        await this.RequestToken();
         // this.getProvinceData();
     }
     componentDidUpdate=async()=>{
         if(this.props.requestToken !== this.state.updateBreakToken){
             await this.getSchoolsData();
-            this.setState({updateBreakToken:this.props.requestToken});
+            await this.getExtracurricularData();
+            await this.getMajorData();
+            await this.setState({updateBreakToken:this.props.requestToken});
         }
         if(this.props.schools !== this.state.updateSchoolsData){
             if(this.props.schools.length !==0){
@@ -268,30 +359,30 @@ class Home extends Component {
         }
     }
     RequestToken=async()=>{
-        console.log("req token function");
         let valueToken="";
-        try {
-            const getValueToken = await AsyncStorage.getItem('@access_token');
-            if(getValueToken !== null) {
-                valueToken+=getValueToken;
-            }
-        } 
-        catch(e) {
-            // error reading value
-        }
+        // try {
+        //     const getValueToken = await AsyncStorage.getItem('@access_token');
+        //     if(getValueToken !== null) {
+        //         valueToken+=getValueToken;
+        //     }
+        // } 
+        // catch(e) {
+        //     // error reading value
+        // }
+        // console.log(valueToken);
         await this.props.fetchDataRefreshToken(`${getUrlBackend}api/operator/refresh`, `Bearer ${valueToken}`);   
     }
     getSchoolsData=async()=>{
         let valueToken="";
-        try {
-            const getValueToken = await AsyncStorage.getItem('@access_token')
-            if(getValueToken !== null) {
-                valueToken+=getValueToken;
-            }
-        } 
-        catch(e) {
-            // error reading value
-        }
+        // try {
+        //     const getValueToken = await AsyncStorage.getItem('@access_token')
+        //     if(getValueToken !== null) {
+        //         valueToken+=getValueToken;
+        //     }
+        // } 
+        // catch(e) {
+        //     // error reading value
+        // }
         const dataPost ={
             headers: {
                 'Authorization': 'Bearer ' + valueToken,
@@ -299,6 +390,19 @@ class Home extends Component {
         }
         
         await this.props.fetchData(`${getUrlBackend}api/operator/school`, dataPost);
+    }
+    getExtracurricularData=async()=>{
+        let valueToken="";
+        const dataPost ={
+            headers: {
+                'Authorization': 'Bearer ' + valueToken,
+            }
+        }
+        
+        await this.props.fetchDataEkstracurricular(`${getUrlBackend}api/operator/school`, dataPost);
+    }
+    getMajorData=async()=>{
+        await this.props.fetchDataMajor(`${getUrlBackend}api/operator/school`);
     }
     getProvinceData=async(page)=>{ 
         const data = await this.props.fetchDataProvince(`${getUrlBackend}api/search/init`);
@@ -317,6 +421,9 @@ class Home extends Component {
     onHandleEskul=(event)=>{
         this.setState({ [event.target.name]: event.target.value });
     }
+    onHandleMajor=(event)=>{
+        this.setState({ [event.target.name]: event.target.value });
+    }
     onSubmitUpdateSchools=async()=>{
         let valueToken="";
         try {
@@ -328,221 +435,226 @@ class Home extends Component {
         catch(e) {
             // error reading value
         }
-        const formData = new FormData(); 
+        let formData = new FormData();
+        let facilitiesArray=[], indexForFaciitiesArray=0;
+        let ekstrakulilullerArray=[], indexForeskulArray=0;
         if(this.state.facilities1 !== ""){
-            formData.append( 
-                "facilities[]", 
-                this.state.facilities1, 
-                // this.state.facilities1.name 
-            ); 
+            formData.append("facilities[]", this.state.facilities1);
         }
         if(this.state.facilities2 !== ""){
-            formData.append( 
-                "facilities[]", 
-                this.state.facilities2, 
-                // this.state.facilities2.name 
-            ); 
+            formData.append("facilities[]", this.state.facilities2);
         }
         if(this.state.facilities3 !== ""){
-            formData.append( 
-                "facilities[]", 
-                this.state.facilities3, 
-                // this.state.facilities3.name 
-            ); 
+            formData.append("facilities[]", this.state.facilities3);
         }
         if(this.state.facilities4 !== ""){
-            formData.append( 
-                "facilities[]", 
-                this.state.facilities4, 
-                // this.state.facilities4.name 
-            ); 
+            formData.append("facilities[]", this.state.facilities4);
         }
         if(this.state.facilities5 !== ""){
-            formData.append( 
-                "facilities[]", 
-                this.state.facilities5, 
-                // this.state.facilities5.name 
-            ); 
+            formData.append("facilities[]", this.state.facilities5);
         }
         if(this.state.facilities6 !== ""){
-            formData.append( 
-                "facilities[]", 
-                this.state.facilities6, 
-                // this.state.facilities6.name 
-            ); 
+            formData.append("facilities[]", this.state.facilities6);
         }
         if(this.state.facilities7 !== ""){
-            formData.append( 
-                "facilities[]", 
-                this.state.facilities7, 
-                // this.state.facilities7.name 
-            ); 
+            formData.append("facilities[]", this.state.facilities7);
         }
         if(this.state.facilities8 !== ""){
-            formData.append( 
-                "facilities[]", 
-                this.state.facilities8, 
-                // this.state.facilities8.name 
-            ); 
+            formData.append("facilities[]", this.state.facilities8);
         }
         if(this.state.facilities9 !== ""){
-            formData.append( 
-                "facilities[]", 
-                this.state.facilities9, 
-                // this.state.facilities9.name 
-            ); 
+            formData.append("facilities[]", this.state.facilities9);
         }
         if(this.state.facilities10 !== ""){
-            formData.append( 
-                "facilities[]", 
-                this.state.facilities10, 
-                // this.state.facilities10.name 
-            ); 
+            formData.append("facilities[]", this.state.facilities10);
         }
         if(this.state.eskul1 !== ""){
-            formData.append( 
-                "extracurricular[]", 
-                this.state.eskul1, 
-            ); 
+            formData.append("extracurricular[]", this.state.eskul1);
         }
         if(this.state.eskul2 !== ""){
-            formData.append( 
-                "extracurricular[]", 
-                this.state.eskul2, 
-                // this.state.facilities10.name 
-            ); 
+            formData.append("extracurricular[]", this.state.eskul2);
         }
         if(this.state.eskul3 !== ""){
-            formData.append( 
-                "extracurricular[]", 
-                this.state.eskul3, 
-                // this.state.facilities10.name 
-            ); 
+            formData.append("extracurricular[]", this.state.eskul3);
         }
         if(this.state.eskul4 !== ""){
-            formData.append( 
-                "extracurricular[]", 
-                this.state.eskul4, 
-                // this.state.facilities10.name 
-            ); 
+            formData.append("extracurricular[]", this.state.eskul4);
         }
         if(this.state.eskul5 !== ""){
-            formData.append( 
-                "extracurricular[]", 
-                this.state.eskul5, 
-                // this.state.facilities10.name 
-            ); 
+            formData.append("extracurricular[]", this.state.eskul5);
         }
         if(this.state.eskul6 !== ""){
-            formData.append( 
-                "extracurricular[]", 
-                this.state.eskul6, 
-                // this.state.facilities10.name 
-            ); 
+            formData.append("extracurricular[]", this.state.eskul6);
         }
         if(this.state.eskul7 !== ""){
-            formData.append( 
-                "extracurricular[]", 
-                this.state.eskul7, 
-                // this.state.facilities10.name 
-            ); 
+            formData.append("extracurricular[]", this.state.eskul7);
         }
         if(this.state.eskul8 !== ""){
-            formData.append( 
-                "extracurricular[]", 
-                this.state.eskul8, 
-                // this.state.facilities10.name 
-            ); 
+            formData.append("extracurricular[]", this.state.eskul8);
         }
         if(this.state.eskul9 !== ""){
-            formData.append( 
-                "extracurricular[]", 
-                this.state.eskul9, 
-                // this.state.facilities10.name 
-            ); 
+            formData.append("extracurricular[]", this.state.eskul9);
         }
         if(this.state.eskul10 !== ""){
-            formData.append( 
-                "extracurricular[]", 
-                this.state.eskul10, 
-                // this.state.facilities10.name 
-            ); 
+            formData.append("extracurricular[]", this.state.eskul10);
         }
-        formData.append( 
-            "major[]", 
-            "IPA", 
-            // this.state.facilities10.name 
-        ); 
-        
-        // let facilities1= "";
-        // if(this.state.facilities1 !== ""){
-        //     facilities1=this.state.facilities1;
-        // }
-        // let facilities2= "";
-        // if(this.state.facilities2 !== ""){
-        //     facilities2=this.state.facilities2;
-        // }
-        // let facilities3= "";
-        // if(this.state.facilities3 !== ""){
-        //     facilities3=this.state.facilities3;
-        // }
-        // let facilities4= "";
-        // if(this.state.facilities4 !== ""){
-        //     facilities4=this.state.facilities4;
-        // }
-        // let facilities5= "";
-        // let facilities6= "";
-        // let facilities7= "";
-        // let facilities8= "";
-        // let facilities9= "";
-        // let facilities10= "";
 
-        // let eskul1= "";
-        // let eskul2= "";
-        // let eskul3= "";
-        // let eskul4= "";
-        // let eskul5= "";
-        // let eskul6= "";
-        // let eskul7= "";
-        // let eskul8= "";
-        // let eskul9= "";
-        // let eskul10= "";
-        const sendData ={
-            "npsn": this.state.npsnValue,            
-            "name": this.state.schoolsNameValue,
-            "address": this.state.schoolsAddressValue,
-            "province_id":this.state.province_id,
-            "regency_id": this.state.city_id,
-            "district_id": this.state.district_id,
-            "village_id": this.state.village_id,
-            // postal_code:14045
-            "phone_number": this.state.phoneNumberValue,
-            "email": this.state.emailFormValue,
-            "website": this.state.valueInputWebiste,
-            "curriculum": this.state.curriculumSchoolsValue,
-            "headmaster": this.state.headMasterOfSchoolsValue,
-            "schools_hour": this.state.finishSchoolsTimeValue,
-            "total_student": this.state.totalOfStudentValue,
-            "accreditation": this.state.accreditationValue,
-            // educational_stage: this.
-            "status": this.state.status,
-            "etf_cost": this.state.etfCostValue,
-            "spp_cost": this.state.sppCostValue,
-            "activities_cost": this.state.activityCostValue,
-            "book_cost": this.state.bookCostValue,
-            "discount": this.state.inputDiscountValue,
-            "registration": this.state.registrationValue,
-            "annoucement": this.state.annoucementValue,
-            "re_registration": this.state.reregistrationValue,
-            "facilities[]":null,
-            
+        if(this.state.major1 !== ""){
+            formData.append("major[]", this.state.major1);
         }
-        await this.props.fetchDataUpdateSchools(`${getUrlBackend}api/operator/school/request`, `Bearer ${valueToken}`, sendData, formData);   
+        if(this.state.major2 !== ""){
+            formData.append("major[]", this.state.major2);
+        }
+        if(this.state.major3 !== ""){
+            formData.append("major[]", this.state.major3);
+        }
+        if(this.state.major4 !== ""){
+            formData.append("major[]", this.state.major4);
+        }
+        if(this.state.major5 !== ""){
+            formData.append("major[]", this.state.major5);
+        }
+        if(this.state.major6 !== ""){
+            formData.append("major[]", this.state.major6);
+        }
+        if(this.state.major7 !== ""){
+            formData.append("major[]", this.state.major7);
+        }
+        if(this.state.major8 !== ""){
+            formData.append("major[]", this.state.major8);
+        }
+        if(this.state.major9 !== ""){
+            formData.append("major[]", this.state.major9);
+        }
+        if(this.state.major10 !== ""){
+            formData.append("major[]", this.state.major10);
+        }
+
+        formData.append("npsn", this.state.npsnValue);
+        formData.append("name", this.state.schoolsNameValue); 
+        formData.append("address", this.state.schoolsAddressValue);
+        formData.append("province_id", this.state.province_id);
+        formData.append("regency_id", this.state.city_id);
+        formData.append("district_id",this.state.district_id );
+        formData.append("village_id", "99999" );
+        formData.append("postal_code", "000000" );
+        formData.append("phone_number", this.state.phoneNumberValue);
+        formData.append("email", this.state.emailFormValue);
+        formData.append("website", this.state.valueInputWebiste);
+        formData.append("curriculum",this.state.curriculumSchoolsValue);
+        formData.append("headmaster", this.state.headMasterOfSchoolsValue);
+        formData.append("schools_hour", this.state.finishSchoolsTimeValue);
+        formData.append("total_student", this.state.totalOfStudentValue);
+        formData.append("accreditation", this.state.accreditationValue);
+        formData.append("educational_stage", this.state.eduStage);
+        formData.append("status", this.state.status);
+        formData.append("etf_cost", this.state.etfCostValue);
+        formData.append("spp_cost", this.state.sppCostValue);
+        formData.append("activities_cost", this.state.activityCostValue);
+        formData.append("book_cost", this.state.bookCostValue);
+        formData.append("discount", this.state.inputDiscountValue);
+        formData.append("registration", this.state.registrationValue);
+        formData.append("annoucement", this.state.annoucementValue);
+        formData.append("re_registration", this.state.reregistrationValue);
+
+        // formData.append("major[]", "bayPass");
+        await this.props.fetchDataUpdateSchools(`${getUrlBackend}api/operator/school/request`, `Bearer ${valueToken}`, formData);   
+    }
+    deleteFacilityProccessFunction=async()=>{
+        let valueToken="";
+        try {
+            const getValueToken = await AsyncStorage.getItem('@access_token')
+            if(getValueToken !== null) {
+                valueToken+=getValueToken;
+            }
+        } 
+        catch(e) {
+            // error reading value
+        }
+        let formData = new FormData();
+        formData.append("facility_id", this.state.updateArrayFasility);
+        // console.log(formData.entries());
+        const data = await this.props.fetchDeleteFacilities(`${getUrlBackend}api/operator/school/remove_facility`, `Bearer ${valueToken}`, formData);
+    }
+    deleteExtracurricularProccessFunction=async()=>{
+        let valueToken="";
+        try {
+            const getValueToken = await AsyncStorage.getItem('@access_token')
+            if(getValueToken !== null) {
+                valueToken+=getValueToken;
+            }
+        } 
+        catch(e) {
+            // error reading value
+        }
+        console.log(this.state.updateArrayEskul);
+        let formData = new FormData();
+        formData.append("extracurricular_id", this.state.updateArrayEskul);
+        const data = await this.props.fetchDeleteEkstracurricular(`${getUrlBackend}api/operator/school/remove_extracurricular`, `Bearer ${valueToken}`, formData);
+    }
+    deleteMajorProccessFunction=async()=>{
+        let formData = new FormData();
+        formData.append("major_id", this.state.updateArrayMajor);
+        const data = await this.props.fetchDeleteMajor(`${getUrlBackend}api/operator/school/remove_major`, formData);
+    }
+    onHandleDeleteFasility=(param, filterData)=>{
+        let data = this.isNotEpmtyData(filterData);
+        // console.log(this.state.updateArrayFasility);
+        if(this.state.updateArrayFasility === "" || this.state.updateArrayFasility === null || this.state.updateArrayFasility === undefined){
+            return data;
+        }
+        if(this.state.updateArrayFasility !== null){
+            if(this.state.updateArrayFasility !== this.state.varForStopReqDeleteFacilities){
+                this.setState({varForStopReqDeleteFacilities: this.state.updateArrayFasility});
+                    this.deleteFacilityProccessFunction();
+            }
+        }
+        console.log(data);
+        delete data[data.findIndex((e) =>{ return e.id === parseInt(param)})];
+        return data;
+    }
+    onHandleDeleteEskul=(param, filterData)=>{
+        let data = this.isNotEpmtyData(filterData);
+        // console.log(this.state.updateArrayFasility);
+        if(this.state.updateArrayEskul === "" || this.state.updateArrayEskul === null || this.state.updateArrayEskul === undefined){
+            return data;
+        }
+        if(this.state.updateArrayEskul !== null){
+            if(this.state.updateArrayEskul !== this.state.varForStopReqDeleteEskul){
+                this.setState({varForStopReqDeleteEskul: this.state.updateArrayEskul});
+                    this.deleteExtracurricularProccessFunction();
+            }
+        }
+        // delete data[0];
+        delete data[data.findIndex((e) =>{ return e.id === parseInt(param)})];
+        return data;
+    }
+    onHandleDeleteMajor=(param, filterData)=>{
+        let data = this.isNotEpmtyData(filterData);
+        console.log(this.state.updateArrayMajor);
+        if(this.state.updateArrayMajor === "" || this.state.updateArrayMajor === null || this.state.updateArrayMajor === undefined){
+            return data;
+        }
+        if(this.state.updateArrayMajor !== null){
+            if(this.state.updateArrayMajor !== this.state.varForStopReqDeleteMajor){
+                this.setState({varForStopReqDeleteMajor: this.state.updateArrayMajor});
+                this.deleteMajorProccessFunction();
+            }
+        }
+        // delete data[0];
+        delete data[data.findIndex((e) =>{ return e.id === parseInt(param)})];
+        return data;
+    }
+    isNotEpmtyData=(data)=>{
+        return data.filter((el)=>{return el != null;});
+    }
+    onClickButtonLogout=()=>{
+        window.location.href="/logout";
     }
     render() {
-        let newArrayFacilities=[], newFixArrayFacilities=[], valueForArrayFacilities=null;
-        let newArrayEskul=[], newFixArrayEskul=[], valueForArrayEskul=null;
-        let lengthArrayForFacilities = this.props.schoolsFacilities.length;
+        let newArrayFacilities=[], newFixArrayFacilities=[], valueForArrayFacilities=null, idForArrayFacilities=null;
+        let newArrayEskul=[], newFixArrayEskul=[], valueForArrayEskul=null, idForArrayEskul=null;
+        let newArrayMajor=[], newFixArrayMajor=[], valueForArrayMajor=null, idForArrayMajor=null;
         if(this.props.schoolsFacilities.length !==0){
             this.props.schoolsFacilities.map((data, index)=>{
                 newArrayFacilities[index]=data;
@@ -558,44 +670,78 @@ class Home extends Component {
                 if(index < newArrayFacilities.length){
                     if(newArrayFacilities[index]){
                         valueForArrayFacilities=newArrayFacilities[index].name;
+                        idForArrayFacilities=newArrayFacilities[index].id;
                     }
                 }
                 else{
                     valueForArrayFacilities=null;
+                    idForArrayFacilities=null;
                 }
                 newFixArrayFacilities[index]={
                     numb:data.numb,   
                     name:data.name,
                     value: valueForArrayFacilities,
+                    id:idForArrayFacilities,
                 }
             });
         }
-        if(this.props.schoolsExtracurricular.length !==0){
-            this.props.schoolsExtracurricular.map((data, index)=>{
+        if(this.props.extracurricular.length !==0){
+            this.props.extracurricular.map((data, index)=>{
                 newArrayEskul[index]=data;
             });
             dataEskul.map((data, index)=>{
                 if(index < newArrayEskul.length){
-                    if(newArrayFacilities[index]){
+                    if(newArrayEskul[index]){
                         valueForArrayEskul=newArrayEskul[index].name;
+                        idForArrayEskul=newArrayEskul[index].id;
                     }
                 }
                 else{
                     valueForArrayEskul=null;
+                    idForArrayEskul=null;
                 }
                 newFixArrayEskul[index]={
                     numb:data.numb,   
                     name:data.name,
                     value: valueForArrayEskul,
+                    id:idForArrayEskul,
+                }
+            });
+        }
+        if(this.props.major.length !==0){
+            this.props.major.map((data, index)=>{
+                newArrayMajor[index]=data;
+            });
+            dataMajor.map((data, index)=>{
+                if(index < newArrayMajor.length){
+                    if(newArrayMajor[index]){
+                        valueForArrayMajor=newArrayMajor[index].name;
+                        idForArrayMajor=newArrayMajor[index].id;
+                    }
+                }
+                else{
+                    valueForArrayMajor=null;
+                    idForArrayMajor=null;
+                }
+                newFixArrayMajor[index]={
+                    numb:data.numb,   
+                    name:data.name,
+                    value: valueForArrayMajor,
+                    id:idForArrayMajor,
                 }
             });
         }
         if(this.props.schoolsFacilities.length ===0){
             newFixArrayFacilities=dataFacilities;
         }
-        if(this.props.schoolsExtracurricular.length ===0){
+        if(this.props.extracurricular.length ===0){
             newFixArrayEskul=dataEskul;
         }
+        if(this.props.major.length ===0){
+            newFixArrayMajor=dataMajor;
+        }
+
+        console.log(newFixArrayMajor);
         return (
             <div>
                 <section>
@@ -604,6 +750,7 @@ class Home extends Component {
                         titlePage="Sekolah"
                         // titlePage={this.state.facilities1+" && "+this.state.facilities2}
                         onChangeSearch={(e)=>{console.log(e.target.value)}}
+                        onClickLogout={()=>{this.onClickButtonLogout()}}
                     />
                 </section>
                 <section className="tablesForRequestClass" id="bagdesForBannerJumbotronId">
@@ -614,6 +761,7 @@ class Home extends Component {
                             valueSchoolsName={this.state.schoolsNameValue}
                             onChangeCurriculumSchools={(e)=>{this.setState({curriculumSchoolsValue: e.target.value})}}
                             curriculumSchoolsValue={this.state.curriculumSchoolsValue}
+                            onClickEduStage={(e)=>{this.setState({eduStage: e.target.value})}}
                             onChangeNpsn={(e)=>{this.setState({npsnValue: e.target.value})}}
                             npsnValue={this.state.npsnValue}
 
@@ -701,18 +849,31 @@ class Home extends Component {
                             reregistrationValue={this.state.reregistrationValue}
 
                             //Facility
-                            stroreFacilityValueLength={this.props.schoolsFacilities.length !== 0 ? lengthArrayForFacilities : 1}
-                            storeFacility={newFixArrayFacilities}
+                            stroreFacilityValueLength={this.props.schoolsFacilities.length !== 0 ? this.props.schoolsFacilities.length : 1}
+                            storeFacility={this.onHandleDeleteFasility(this.state.updateArrayFasility,newFixArrayFacilities) ?
+                                this.onHandleDeleteFasility(this.state.updateArrayFasility, newFixArrayFacilities) : []
+                            
+                            }
                             onChangeFacilities={(e)=>{this.onHandleFacilities(e)}}
+                            onClickDeleteButtonFacilities={(e)=>{this.setState({updateArrayFasility: e.target.value});
+                                    this.onHandleDeleteFasility(e.target.value, newArrayFacilities)
+                            }}
 
 
                             //eskul
-                            stroreEskulValueLength={this.props.schoolsExtracurricular.length !== 0 ? this.props.schoolsExtracurricular.length : 1}
-                            storeEskul={newFixArrayEskul}
+                            stroreEskulValueLength={this.props.extracurricular.length !== 0 ? this.props.extracurricular.length : 1}
+                            storeEskul={this.onHandleDeleteEskul(this.state.updateArrayEskul, newFixArrayEskul)}
                             onChangeEskul={(e)=>{this.onHandleEskul(e)}}
+                            onClickDeleteButtonEskul={(e)=>{this.getExtracurricularData(); this.setState({updateArrayEskul: e.target.value})}}
+
+                            //Major (Belum Diedit)
+                            stroreMajorValueLength={this.props.major.length !== 0 ? this.props.major.length : 1}
+                            storeMajor={this.onHandleDeleteMajor(this.state.updateArrayMajor, newFixArrayMajor)}
+                            onChangeMajor={(e)=>{this.onHandleMajor(e)}}
+                            onClickDeleteButtonMajor={(e)=>{this.getMajorData(); this.setState({updateArrayMajor: e.target.value})}}
+                            
 
                             onButtonClickSave={()=>{this.onSubmitUpdateSchools()}}
-
                         />
                     <div style={{marginBottom: "351px"}}></div>
                 </section>
@@ -731,7 +892,9 @@ const mapStateToProps = (state) => {
         district: state.districtlist,
         requestToken: state.requestToken,
         schoolsFacilities: state.schoolsFacilities,
-        schoolsExtracurricular: state.schoolsExtracurricular,
+        extracurricular:state.extracurricular,
+        extracurricularDelete:state.extracurricularDelete,
+        major:state.major,
         hasError: state.schoolsHaveError,
         isLoading: state.schoolsAreLoading,
     };
@@ -739,7 +902,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchDataUpdateSchools:(url, token, data, data2) => dispatch(schoolsUpdateFetchData(url, token, data, data2)),
+
+        fetchDeleteMajor: (url, data) => dispatch(majorDeletehData(url, data)),
+        fetchDataMajor: (url, data) => dispatch(majorFetchData(url)),
+        fetchDeleteEkstracurricular: (url, token, data) => dispatch(extracurricularDeletehData(url, token, data)),
+        fetchDataEkstracurricular: (url, data) => dispatch(extracurricularFetchData(url, data)),
+        fetchDeleteFacilities: (url, token, data) => dispatch(facilitiesDeletehData(url, token, data)),
+        fetchDataUpdateSchools:(url, token, data) => dispatch(schoolsUpdateFetchData(url, token, data)),
         fetchData: (url, data) => dispatch(schoolsFetchData(url, data)),
         fetchDataProvince: (url) => dispatch(provinceFetchProvData(url)),
         fetchDataCity: (url) => dispatch(regencyFetchCityData(url)),

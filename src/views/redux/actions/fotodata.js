@@ -1,38 +1,30 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export function shcoolsHaveError(bool) {
+export function fotoDataHaveError(bool) {
     return {
-        type: 'SCHOOLS_HAVE_ERROR',
+        type: 'FOTO_DATA_HAVE_ERROR',
         hasError: bool
     };
 }
 
-export function schoolsAreLoading(bool) {
+export function fotoDataAreLoading(bool) {
     return {
-        type: 'SCHOOLS_ARE_LOADING',
+        type: 'FOTO_DATA_ARE_LOADING',
         isLoading: bool
     };
 }
 
-export function schoolsFetchDataSuccess(api) {
+export function fotoDataFetchDataSuccess(api) {
     return {
-        type: 'SCHOOLS_FETCH_DATA_SUCCESS',
+        type: 'FOTO_DATA_FETCH_DATA_SUCCESS',
         api
     };
 }
 
-export function facilitiesDeletehDataSuccess(api) {
-    return {
-        type: 'SCHOOLS_FETCH_DATA_SUCCESS',
-        api
-    };
-}
-
-
-export function schoolsFetchData(url, data) {
+export function fotoDataFetchData(url, data) {
     return (dispatch) => {
-        dispatch(schoolsAreLoading(true));
+        dispatch(fotoDataAreLoading(true));
 
         setTimeout(async() => {
             let valueToken="";
@@ -50,18 +42,19 @@ export function schoolsFetchData(url, data) {
                     'Authorization': 'Bearer ' + valueToken,
                 }
             }
+            
             axios.get(url, dataPost)
                 .then((response) => {
                     // console.log(response.data);
                     if (response.status !== 200) {
                         throw Error(response.statusText);
                     }
-                    dispatch(schoolsAreLoading(false));
+                    dispatch(fotoDataAreLoading(false));
                     return response;
                 })
-                .then((response) => dispatch(schoolsFetchDataSuccess(response.data)))
+                .then((response) => dispatch(fotoDataFetchDataSuccess(response.data)))
                 .catch((error) => {
-                    dispatch(shcoolsHaveError(true));
+                    dispatch(fotoDataHaveError(true));
                 });
         
                
@@ -69,41 +62,37 @@ export function schoolsFetchData(url, data) {
     };
 }
 
-export function facilitiesDeletehData(url, token, data) {
+export function fotoFetchDeletehData(url, data) {
     return (dispatch) => {
-        // dispatch(logoutAreLoading(true));
+        dispatch(fotoDataAreLoading(true));
 
         setTimeout(() => {
                 const requestOptions = {
                     method: 'POST',
                     headers: { 
-                        // 'Content-Type': 'application/json',
-                        'Authorization': token,
+                        'Content-Type': 'application/json',
+                        'Authorization': data,
                         'My-Custom-Header': 'foobar'
                     },
-                    // body: JSON.stringify({ title: 'React POST Request' })
-                    body: data,
+                    body: JSON.stringify({ title: 'React POST Request' })
+                    // body: data,
                 };
-                // console.log(data);
-                for (var pair of data.entries()) {
-                    console.log(pair[0]+ ', ' + pair[1]); 
-                }
                 fetch(url, requestOptions)
                 .then(response => {
                     // console.log(response);
-                    // if (response.status !== 200) {
-                    //     throw Error(response.statusText);
-                    // }
-                    // dispatch(logoutAreLoading(false));
+                    if (response.status !== 200) {
+                        throw Error(response.statusText);
+                    }
+                    dispatch(fotoDataAreLoading(false));
                     return response.json();
                 })
                 .then(responseJSON => {
                     console.log(responseJSON);
                     // window.location.href = "/home";
-                    dispatch(facilitiesDeletehDataSuccess(responseJSON))
+                    dispatch(fotoDataFetchDataSuccess(responseJSON))
                 })
                 .catch(()=>{
-                    // dispatch(logoutHaveError(true));
+                    dispatch(fotoDataHaveError(true));
 
                 })
                 ;        

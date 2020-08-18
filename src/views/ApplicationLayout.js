@@ -39,7 +39,7 @@ export default class ApplicationLayout extends Base {
             <div>
                 {/* <Whatsapp /> */}
                 <header>
-                    {window.location.pathname!=="/" ? <SidebarCompnents 
+                    {window.location.pathname!=="/"? <SidebarCompnents 
                         store={data}
                     /> : ""}
                 </header>

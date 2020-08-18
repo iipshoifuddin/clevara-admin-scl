@@ -1,4 +1,5 @@
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export function settingHaveError(bool) {
     return {
@@ -32,8 +33,23 @@ export function settingFetchData(url, data) {
     return (dispatch) => {
         dispatch(settingAreLoading(true));
 
-        setTimeout(() => {
-            axios.get(url, data)
+        setTimeout(async() => {
+            let valueToken="";
+            try {
+                const getValueToken = await AsyncStorage.getItem('@access_token')
+                if(getValueToken !== null) {
+                    valueToken+=getValueToken;
+                }
+            } 
+            catch(e) {
+                // error reading value
+            }
+            const dataPost ={
+                headers: {
+                    'Authorization': 'Bearer ' + valueToken,
+                }
+            }
+            axios.get(url, dataPost)
                 .then((response) => {
                     // console.log(response.data);
                     if (response.status !== 200) {

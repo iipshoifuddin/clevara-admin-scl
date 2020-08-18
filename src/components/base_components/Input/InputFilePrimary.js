@@ -21,7 +21,7 @@ const InputFilePrimary =(props)=> {
                 <Row>
                     <Col> */}
                     <div style={{display: "inline-flex"}}>
-                        <InputFile id={props.idForinputPrimary[0].inputid} placeholder="Pilih File..." disabled 
+                        <InputFile id={props.idForinputPrimary[0].inputid} placeholder={props.placeholderFoto} disabled 
                         />
                         <DivButton className="fileUploadPrimary">
                             Select File
@@ -30,6 +30,7 @@ const InputFilePrimary =(props)=> {
                                 type="file" 
                                 class="upload" 
                                 onChange={props.onChange}
+                                disabled={props.onSelectDisable}
                             />
                         </DivButton>
                     </div>
