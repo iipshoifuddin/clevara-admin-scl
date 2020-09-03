@@ -1,0 +1,185 @@
+#administratorTableContainer{
+    max-width: 100%;
+    padding-right: 35px;
+    padding-left: 35px;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+#administratorTableContainer > .row > .col th, td {
+    background: #F5F5FB;
+    border-bottom: 2px solid white; 
+    
+}
+
+#administratorTableContainer > .row > .col .table td, .table th {
+
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 20px solid white;
+
+}
+
+#administratorTableContainer > .row > .col .table th{
+    background: none;
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+
+    /* identical to box height */
+    text-align: center;
+
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#administratorTableContainer > .row > .col .borderRadiusField{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#administratorTableContainer > .row > .col .borderRadiusFieldLeft{
+    border-top-Left-radius: 15px;
+    border-bottom-Left-radius: 15px;
+}
+
+#administratorTableContainer > .row > .col .editLinkStyle{
+    margin-right: 8px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: #1A6EB2;
+}
+
+#administratorTableContainer > .row > .col .deleteLinkStyle{
+    margin-left: 8px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: #1A6EB2;
+}
+
+#administratorTableContainer > .row > .col #buttonAsset{
+    justify-content: right;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 35px;
+    max-width: 100%;
+    display: inline-grid;
+}
+
+#modalAddAdministratorRecordId{
+    width: 594px;
+}
+
+#modalAddAdministratorRecordId > .modal-content > .modal-header > #contained-modal-title-vcenter{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 26px;
+    color: #373A3C;
+}
+
+#modalAddAdministratorRecordId > .modal-content > .modal-footer > #buttonAsset{
+    max-width: 90px;
+}
+
+#modalAddAdministratorRecordId > .modal-content > .modal-footer > .buttonBackModalAddAdministeatorRecord{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A6EB2;
+    margin-right: 23px;
+    text-decoration: none;
+}
+
+#modalAddAdministratorRecordId > .modal-content > .modal-footer > .buttonBackModalAddAdministeatorRecord:hover{
+    text-decoration: none;
+}
+
+#modalEditAdministratorRecordId{
+    width: 594px;
+}
+
+#modalEditAdministratorRecordId > .modal-content > .modal-header > #contained-modal-title-vcenter{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 26px;
+    color: #373A3C;
+}
+
+#modalEditAdministratorRecordId > .modal-content > .modal-footer > #buttonAsset{
+    max-width: 90px;
+}
+
+#modalEditAdministratorRecordId > .modal-content > .modal-footer > .buttonBackModalEditAdministeatorRecord{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A6EB2;
+    margin-right: 23px;
+    text-decoration: none;
+}
+
+#modalEditAdministratorRecordId > .modal-content > .modal-footer > .buttonBackModalEditAdministeatorRecord:hover{
+    text-decoration: none;
+}
+
+#modalDeleteAdministratorRecordId{
+    width: 337px;
+}
+
+/* height: 257px;
+left: 0px;
+top: 0px;
+
+background: #FFFFFF;
+
+border: 1px solid #BDBDBD;
+border-radius: 4px; */
+
+#modalDeleteAdministratorRecordId > .modal-content > .modal-header{
+    border-bottom: 0px;
+}
+
+#modalDeleteAdministratorRecordId > .modal-content > .modal-body > .deleteAdministratorRecordClass > .row > .cancelButton{
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+}
+
+#modalDeleteAdministratorRecordId > .modal-content > .modal-body > .deleteAdministratorRecordClass > .row > .cancelButton a{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A6EB2;
+    /* margin-right: 23px; */
+    text-decoration: none;
+}
+
+#modalDeleteAdministratorRecordId > .modal-content > .modal-body > .deleteAdministratorRecordClass > .row > .deleteButton #buttonAsset{
+    justify-content: left;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#buttonModalDeleteAdministeatorRecord:hover{
+    color: #a31818 !important;
+}

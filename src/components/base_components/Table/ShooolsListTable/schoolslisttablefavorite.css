@@ -1,0 +1,114 @@
+@media screen and (min-width: 1024px){
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
+        min-width: 680px;
+    }
+}
+@media screen and (min-width: 1152px){
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
+        min-width: 770px;
+    }
+}
+@media screen and (min-width: 1280px){
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
+        min-width: 870px;
+    } 
+}
+@media screen and (min-width: 1360px){
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
+        min-width: 950px;
+    }   
+}
+
+@media screen and (min-width: 1366px){
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
+        min-width: 950px;
+    }
+}
+
+@media screen and (min-width: 1440px){
+    #schoolsListTableFavoriteContainer > .row > .col .divSchoolsListTableFavorite{
+        min-width: 1029px;
+    }
+}
+
+#schoolsListTableFavoriteContainer{
+    max-width: 100%;
+    padding-right: 35px;
+    padding-left: 35px;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+#schoolsListTableFavoriteContainer > .row > .col th, td {
+    background: #F5F5FB;
+    border-bottom: 2px solid white; 
+    
+}
+
+#schoolsListTableFavoriteContainer > .row > .col .table td, .table th {
+
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 20px solid white;
+
+}
+
+#schoolsListTableFavoriteContainer > .row > .col .table th{
+    background: none;
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+
+    /* identical to box height */
+    text-align: center;
+
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#schoolsListTableFavoriteContainer > .row > .col .borderRadiusField{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#schoolsListTableFavoriteContainer > .row > .col .borderRadiusFieldLeft{
+    border-top-Left-radius: 15px;
+    border-bottom-Left-radius: 15px;
+}
+
+#schoolsListTableFavoriteContainer > .row > .col .editLinkStyle{
+    margin-right: 8px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: #1A6EB2;
+}
+
+#schoolsListTableFavoriteContainer > .row > .col .deleteLinkStyle{
+    margin-left: 8px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: #1A6EB2;
+}
+
+#schoolsListTableFavoriteContainer > .row > .col #buttonAsset{
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 35px;
+    max-width: 100%;
+    display: inline-grid;
+}
+
+#schoolsListTableFavoriteContainer > .row > .col > .divSchoolsListTableFavorite > .table > tbody > tr > td > .editLinkStyle:hover{
+    text-decoration: none;
+}

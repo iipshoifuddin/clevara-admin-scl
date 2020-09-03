@@ -1,0 +1,98 @@
+#slidebarComponentsDashboardContainer > .row > .col > .sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #96C8EB;
+    overflow-x: hidden;
+    transition: 0.5s;
+    /* padding-top: 60px; */
+}
+
+#slidebarComponentsDashboardContainer > .row > .col > .sidebar a {
+    padding: 10px;
+    padding-left: 50px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+    width: 100%;
+    height: 60px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* identical to box height */
+
+    color: #FFFFFF;
+}
+#slidebarComponentsDashboardContainer > .row > .col > .sidebar > .listMenuSlideBar{
+    padding-top: 60px;
+}
+
+#slidebarComponentsDashboardContainer > .row > .col > .sidebar > .listMenuSlideBar > .tablinksbadges > i{
+    /* padding-top: 60px; */
+    padding-right: 15px;
+}
+
+#slidebarComponentsDashboardContainer > .row > .col > .sidebar > .listMenuSlideBar > .tablinksbadges > div{
+    width: 5px;
+    height: 30px;
+    background: #96C8EB;
+    position: absolute;
+    right: 0px;
+}
+
+#slidebarComponentsDashboardContainer > .row > .col > .sidebar > .logoSlidebar{
+    padding-top: 101px;
+}
+
+#slidebarComponentsDashboardContainer > .row > .col > .sideba a:hover {
+    color: #f1f1f1;
+}
+
+
+#slidebarComponentsDashboardContainer > .row > .col > .sidebar > .buttonHumbergerSlidebar > .openbtn:hover {
+    background-color: transparent;
+}
+
+#slidebarComponentsDashboardContainer > .row > .col > .sidebar > .buttonHumbergerSlidebar > .openbtn {
+    width: 50px;
+    font-size: 34px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    padding-left: 13px;
+    border: none;
+}
+
+#slidebarComponentsDashboardContainer > .row > .col > .sidebar > .buttonHumbergerSlidebar{
+    position: absolute;
+    right: 0px;
+    padding-top: 31px;
+    padding-right: 22px;
+}
+
+#slidebarComponentsDashboardContainer > .row > .col > #main > .openbtn:hover {
+    background-color: #444;
+}
+
+#slidebarComponentsDashboardContainer > .row > .col > #contentDashboardEduplus {
+    transition: margin-left .5s;
+    margin-left: 250px;
+    padding: 16px;
+}
+
+.activeClassBadges{
+    color: #ffffff !important;
+    background: #1A6EB2;
+}
+
+.activeClassBar{
+    background: #FFFFFF;
+}

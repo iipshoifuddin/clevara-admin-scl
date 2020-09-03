@@ -1,0 +1,34 @@
+#inputFotoFormContainer{
+    max-width: 100%;
+    padding-right: 35px;
+    padding-left: 35px;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+#inputFotoFormContainer > .row > .divColbackgroundInput{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#inputFotoFormContainer > .row > .buttonDeleteForJumbotronContent{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#inputFotoFormContainer > .row > .colButtonSaveCancelJumbotronBanner{
+    display: inline-flex;
+    margin-top: 40px;
+    max-width: 205px;
+}
+
+#inputFotoFormContainer > .row > .colButtonSaveCancelJumbotronBanner > #buttonAssetSecondary{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#inputFotoFormContainer > .row > .colButtonSaveCancelJumbotronBanner > #buttonAsset{
+    padding-right: 0px;
+    padding-left: 0px;
+}

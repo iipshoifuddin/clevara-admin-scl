@@ -1,0 +1,77 @@
+#administratorTableContainer > .row > .col .borderRadiusField{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#administratorTableContainer > .row > .col .borderRadiusFieldLeft{
+    border-top-Left-radius: 15px;
+    border-bottom-Left-radius: 15px;
+}
+
+#administratorTableContainer > .row > .col .editLinkStyle{
+    margin-right: 8px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: #1A6EB2;
+}
+
+#administratorTableContainer > .row > .col .deleteLinkStyle{
+    margin-left: 8px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: #1A6EB2;
+}
+
+#administratorTableContainer > .row > .col #buttonAsset{
+    justify-content: right;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 35px;
+    max-width: 100%;
+    display: inline-grid;
+}
+
+#modalDeleteOfficerRecordId{
+    width: 337px;
+}
+
+#modalDeleteOfficerRecordId > .modal-content > .modal-header{
+    border-bottom: 0px;
+}
+
+#modalDeleteOfficerRecordId > .modal-content > .modal-body > .deleteOfficerRecordClass > .row > .cancelButton{
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+}
+
+#modalDeleteOfficerRecordId > .modal-content > .modal-body > .deleteOfficerRecordClass > .row > .cancelButton a{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A6EB2;
+    /* margin-right: 23px; */
+    text-decoration: none;
+}
+
+#modalDeleteOfficerRecordId > .modal-content > .modal-body > .deleteOfficerRecordClass > .row > .deleteButton #buttonAsset{
+    justify-content: left;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#buttonModalDeleteAdministeatorRecord:hover{
+    color: #a31818 !important;
+}

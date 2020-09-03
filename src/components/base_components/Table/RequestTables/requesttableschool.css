@@ -1,0 +1,114 @@
+@media screen and (min-width: 1024px){
+    #RequestTableSchoolsContainer > .row > .col .divSchoolsRequestTable{
+        min-width: 680px;
+    }
+}
+@media screen and (min-width: 1152px){
+    #RequestTableSchoolsContainer > .row > .col .divSchoolsRequestTable{
+        min-width: 770px;
+    }
+}
+@media screen and (min-width: 1280px){
+    #RequestTableSchoolsContainer > .row > .col .divSchoolsRequestTable{
+        min-width: 870px;
+    } 
+}
+@media screen and (min-width: 1360px){
+    #RequestTableSchoolsContainer > .row > .col .divSchoolsRequestTable{
+        min-width: 950px;
+    }   
+}
+
+@media screen and (min-width: 1366px){
+    #RequestTableSchoolsContainer > .row > .col .divSchoolsRequestTable{
+        min-width: 950px;
+    }
+}
+
+@media screen and (min-width: 1440px){
+    #RequestTableSchoolsContainer > .row > .col .divSchoolsRequestTable{
+        min-width: 1029px;
+    }
+}
+
+#RequestTableSchoolsContainer{
+    max-width: 100%;
+    padding-right: 35px;
+    padding-left: 35px;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+#RequestTableSchoolsContainer > .row > .col th, td {
+    background: #F5F5FB;
+    border-bottom: 2px solid white; 
+    
+}
+
+#RequestTableSchoolsContainer > .row > .col .table td, .table th {
+
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 20px solid white;
+
+}
+
+#RequestTableSchoolsContainer > .row > .col .table th{
+    background: none;
+    
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+
+    /* identical to box height */
+    text-align: center;
+
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#RequestTableSchoolsContainer > .row > .col .borderRadiusField{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#RequestTableSchoolsContainer > .row > .col .borderRadiusFieldLeft{
+    border-top-Left-radius: 15px;
+    border-bottom-Left-radius: 15px;
+}
+
+#RequestTableSchoolsContainer > .row > .col .editLinkStyle{
+    margin-right: 8px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: #1A6EB2;
+}
+
+#RequestTableSchoolsContainer > .row > .col .deleteLinkStyle{
+    margin-left: 8px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    color: #1A6EB2;
+}
+
+#RequestTableSchoolsContainer > .row > .col #buttonAsset{
+    justify-content: right;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 35px;
+    max-width: 100%;
+    display: inline-grid;
+}
+
+#RequestTableSchoolsContainer > .row > .col > .divSchoolsRequestTable > .table > tbody > tr > td > .editLinkStyle:hover{
+    text-decoration: none;
+}

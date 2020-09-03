@@ -1,0 +1,45 @@
+#modalDeleteSchoolsTableFavoriteRecordId{
+    width: 337px;
+}
+
+/* height: 257px;
+left: 0px;
+top: 0px;
+
+background: #FFFFFF;
+
+border: 1px solid #BDBDBD;
+border-radius: 4px; */
+
+#modalDeleteSchoolsTableFavoriteRecordId > .modal-content > .modal-header{
+    border-bottom: 0px;
+}
+
+#modalDeleteSchoolsTableFavoriteRecordId > .modal-content > .modal-body > .deleteSchoolsTableFavoriteRecordClass > .row > .cancelButton{
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+}
+
+#modalDeleteSchoolsTableFavoriteRecordId > .modal-content > .modal-body > .deleteSchoolsTableFavoriteRecordClass > .row > .cancelButton a{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A6EB2;
+    /* margin-right: 23px; */
+    text-decoration: none;
+}
+
+#modalDeleteSchoolsTableFavoriteRecordId > .modal-content > .modal-body > .deleteSchoolsTableFavoriteRecordClass > .row > .deleteButton #buttonAsset{
+    justify-content: left;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#buttonModalDeleteSchoolsFavoriteTableRecord:hover{
+    color: #a31818 !important;
+}

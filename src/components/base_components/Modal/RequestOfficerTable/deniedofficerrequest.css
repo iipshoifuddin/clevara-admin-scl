@@ -1,0 +1,47 @@
+#modalDeniedOfficerRequestId{
+    width: 337px;
+}
+
+#modalDeniedOfficerRequestId > .modal-content > .modal-header{
+    border-bottom: 0px;
+}
+
+#modalDeniedOfficerRequestId > .modal-content > .modal-body > .deniedOfficerRequestContainer > .row > .cancelButton{
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+}
+
+#modalDeniedOfficerRequestId > .modal-content > .modal-body > .deniedOfficerRequestContainer > .row > .cancelButton a{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A6EB2;
+    /* margin-right: 23px; */
+    text-decoration: none;
+}
+
+#modalDeniedOfficerRequestId > .modal-content > .modal-body > .deniedOfficerRequestContainer > .row > .deleteButton #buttonAsset{
+    justify-content: left;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#buttonDeniedOfficerRequest:hover{
+    color: #1A6EB2 !important;
+}
+
+/* #modalAddAdministratorRecordId > .modal-content > .modal-footer > .buttonBackModalAddAdministeatorRecord{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A6EB2;
+    margin-right: 23px;
+    text-decoration: none;
+} */

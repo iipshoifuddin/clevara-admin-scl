@@ -1,0 +1,34 @@
+#promo1FormContainer{
+    max-width: 100%;
+    padding-right: 35px;
+    padding-left: 35px;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+#promo1FormContainer > .row > .divColbackgroundInput{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#promo1FormContainer > .row > .buttonDeleteForJumbotronContent{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#promo1FormContainer > .row > .colButtonSaveCancelPromo1Banner{
+    display: inline-flex;
+    margin-top: 40px;
+    max-width: 205px;
+}
+
+#promo1FormContainer > .row > .colButtonSaveCancelPromo1Banner > #buttonAssetSecondary{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#promo1FormContainer > .row > .colButtonSaveCancelPromo1Banner > #buttonAsset{
+    padding-right: 0px;
+    padding-left: 0px;
+}
